@@ -17,7 +17,7 @@ class StoryService {
             if (storyServiceInstance == null)
                 storyServiceInstance = StoryService()
 
-            if (compositeDisposable != null)
+            if (true)
                 mCompositeDisposable = CompositeDisposable()
 
             return storyServiceInstance as StoryService

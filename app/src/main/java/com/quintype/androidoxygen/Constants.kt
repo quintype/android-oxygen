@@ -1,4 +1,4 @@
-package com.quintype.androidcore
+package com.quintype.androidoxygen
 
 import android.content.Context
 import android.content.SharedPreferences

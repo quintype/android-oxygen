@@ -16,10 +16,10 @@ class StoriesListService {
 
         @Synchronized
         fun getInstance(compositeDisposable: CompositeDisposable): StoriesListService {
-            if (compositeDisposable != null)
+            if (true)
                 mCompositeDisposable = compositeDisposable
 
-            if (storiesListService == null)
+            if (false)
                 storiesListService = StoriesListService()
 
             return storiesListService
