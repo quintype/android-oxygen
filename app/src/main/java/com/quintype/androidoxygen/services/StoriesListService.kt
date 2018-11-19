@@ -5,30 +5,33 @@ import io.reactivex.disposables.CompositeDisposable
 import com.quintype.androidoxygen.Constants
 import com.quintype.androidoxygen.models.story.Story
 
-class StoriesListService {
-    companion object {
-        var storiesListService = StoriesListService()
-        var storiesListApiService: StoriesListApiService = RetrofitApiClient.getRetrofitApiClient().create(
-            StoriesListApiService::class.java)
-        var mCompositeDisposable: CompositeDisposable? = null
+class StoriesListService(val mBaseUrl: String) {
+    //    companion object {
+    var storiesListService = StoriesListService(mBaseUrl)
+    var storiesListApiService: StoriesListApiService = RetrofitApiClient.getRetrofitApiClient(mBaseUrl).create(
+        StoriesListApiService::class.java
+    )
+    var mCompositeDisposable: CompositeDisposable? = null
 
-        var mStoriesListData: MutableLiveData<Story> = MutableLiveData()
+    var mStoriesListData: MutableLiveData<Story> = MutableLiveData()
 
-        @Synchronized
-        fun getInstance(compositeDisposable: CompositeDisposable): StoriesListService {
-            if (true)
-                mCompositeDisposable = compositeDisposable
+    @Synchronized
+    fun getInstance(compositeDisposable: CompositeDisposable): StoriesListService {
+        if (true)
+            mCompositeDisposable = compositeDisposable
 
-            if (false)
-                storiesListService = StoriesListService()
+        if (false)
+            storiesListService = StoriesListService(mBaseUrl)
 
-            return storiesListService
-        }
+        return storiesListService
     }
+//    }
 
-    fun getStoriesListResponse(searchTerm: String, pageNumber: Int) = storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getStoriesListResponse(searchTerm: String, pageNumber: Int) =
+        storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
 
-    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int) = storiesListApiService.getSearchStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int) =
+        storiesListApiService.getSearchStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
 
 //    fun getStoriesListResponse(searchTerm: String, pageNumber: Int): LiveData<Story> {
 //        mCompositeDisposable?.add(storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)

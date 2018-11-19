@@ -22,16 +22,16 @@ class RetrofitApiClient {
         //                .setLevel(HttpLoggingInterceptor.Level.BODY)
 //                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
         var builder: OkHttpClient.Builder = OkHttpClient().newBuilder().addInterceptor(interceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
 
-        fun getRetrofitApiClient(): Retrofit {
+        fun getRetrofitApiClient(mBaseUrl: String): Retrofit {
             retrofit = Retrofit
-                    .Builder()
-                    .baseUrl(Constants.BASE_URL)
-                    .client(builder.build())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
+                .Builder()
+                .baseUrl(mBaseUrl)
+                .client(builder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
 
             return retrofit as Retrofit
         }

@@ -16,10 +16,10 @@ import io.reactivex.subscribers.ResourceSubscriber
  * Created TemplateCollectionWithRx by rakshith on 7/23/18.
  */
 
-class CollectionService {
+class CollectionService(val mBaseUrl: String) {
     var TAG = CollectionService::class.java.simpleName
     var collectionApiService: CollectionApiService =
-        RetrofitApiClient.getRetrofitApiClient().create(CollectionApiService::class.java)
+        RetrofitApiClient.getRetrofitApiClient(mBaseUrl).create(CollectionApiService::class.java)
     var collectionData: MutableLiveData<BulkTableModel> = MutableLiveData()
     var collectionModelList = ArrayList<BulkTableModel>()
 
@@ -175,7 +175,7 @@ class CollectionService {
 
     fun getChildRxResponse(collectionSlug: String) {
         val collectionApiService: CollectionApiService =
-            RetrofitApiClient.getRetrofitApiClient().create(CollectionApiService::class.java)
+            RetrofitApiClient.getRetrofitApiClient(mBaseUrl).create(CollectionApiService::class.java)
         Log.d(TAG, "Second Iteration Collection Slug - " + collectionSlug)
         val subscribeWith = collectionApiService.getCollectionOnlyStoriesApiService(
             collectionSlug,
