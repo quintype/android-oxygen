@@ -46,11 +46,13 @@ class Constants {
         const val TYPE_COLLECTION: String = "collection"
         const val PAGE_LIMIT_CHILD: Int = 5
         const val PRE_FETCH_ITEM: Int = 5
+        const val COLLECTION_LIMIT: Int = 5
         const val DELAY_SEC: Long = 3
         const val SPLASH_SCREEN_DELAY_MILLI_SEC: Long = 1000
         const val TYPE_STORY: String = "story"
         const val WIDGET_TEMPLATE: String = "widget"
-        const val STORY_FIELDS: String = "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at"
+        const val STORY_FIELDS: String =
+            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at"
         const val PAGE_TITLE: String = "PAGE_TITLE"
         /**
          * Constants for query params

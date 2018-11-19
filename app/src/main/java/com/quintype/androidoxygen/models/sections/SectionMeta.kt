@@ -24,17 +24,17 @@ class SectionMeta() : Parcelable {
     }
 
     @SerializedName("id")
-    private val id: String? = null
+    public val id: String? = null
     @SerializedName("display-name")
-    private val displayName: String? = null
+    public val displayName: String? = null
     @SerializedName("name")
-    private val name: String? = null
+    public val name: String? = null
     @SerializedName("parent-id")
-    private val parentId: String? = null
+    public val parentId: String? = null
     @SerializedName("slug")
-    private val slug: String? = null
+    public val slug: String? = null
     @SerializedName("collection")
-    private var collectionMeta: CollectionMeta? = null
+    public var collectionMeta: CollectionMeta? = null
 
     constructor(parcel: Parcel) : this() {
         collectionMeta = parcel.readParcelable(CollectionMeta::class.java.classLoader)
