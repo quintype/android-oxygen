@@ -10,11 +10,11 @@ import com.google.gson.annotations.SerializedName
 class CollectionMeta : Parcelable {
 
     @SerializedName("id")
-    private var id: String? = null
+    public var id: String? = null
     @SerializedName("slug")
-    private var slug: String? = null
+    public var slug: String? = null
     @SerializedName("name")
-    private var name: String? = null
+    public var name: String? = null
 
     fun id(): String? {
         return id
