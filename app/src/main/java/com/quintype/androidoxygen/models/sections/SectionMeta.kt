@@ -18,28 +18,24 @@ class SectionMeta() : Parcelable {
         dest?.writeString(this.parentId)
         dest?.writeString(this.slug)
     }
-
     override fun describeContents(): Int {
         return 0
     }
-
     @SerializedName("id")
-    public val id: String? = null
+    val id: String? = null
     @SerializedName("display-name")
-    public val displayName: String? = null
+    val displayName: String? = null
     @SerializedName("name")
-    public val name: String? = null
+    val name: String? = null
     @SerializedName("parent-id")
-    public val parentId: String? = null
+    val parentId: String? = null
     @SerializedName("slug")
-    public val slug: String? = null
+    val slug: String? = null
     @SerializedName("collection")
-    public var collectionMeta: CollectionMeta? = null
-
+    var collectionMeta: CollectionMeta? = null
     constructor(parcel: Parcel) : this() {
         collectionMeta = parcel.readParcelable(CollectionMeta::class.java.classLoader)
     }
-
     override fun toString(): String {
         return "SectionMeta{" +
                 "id='" + id + '\''.toString() +
@@ -48,12 +44,10 @@ class SectionMeta() : Parcelable {
                 ", slug='" + slug + '\''.toString() +
                 '}'.toString()
     }
-
     companion object CREATOR : Parcelable.Creator<SectionMeta> {
         override fun createFromParcel(parcel: Parcel): SectionMeta {
             return SectionMeta(parcel)
         }
-
         override fun newArray(size: Int): Array<SectionMeta?> {
             return arrayOfNulls(size)
         }
