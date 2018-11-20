@@ -22,10 +22,11 @@ class RetrofitApiClient {
         //                .setLevel(HttpLoggingInterceptor.Level.BODY)
 //                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
         var builder: OkHttpClient.Builder = OkHttpClient().newBuilder().addInterceptor(interceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
 
         fun getRetrofitApiClient(): Retrofit {
-            retrofit = Retrofit
+            if (Constants.BASE_URL != null)
+                retrofit = Retrofit
                     .Builder()
                     .baseUrl(Constants.BASE_URL)
                     .client(builder.build())

@@ -4,9 +4,10 @@ import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import com.quintype.androidoxygen.models.story.SlugStory
 
-class StoryService {
+class StoryService() {
     companion object {
-        var storyServiceApi: StoryServiceApi = RetrofitApiClient.getRetrofitApiClient().create(StoryServiceApi::class.java)
+        var storyServiceApi: StoryServiceApi =
+            RetrofitApiClient.getRetrofitApiClient().create(StoryServiceApi::class.java)
 
         var storyServiceInstance: StoryService? = null
         var mCompositeDisposable: CompositeDisposable? = null
