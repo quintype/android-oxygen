@@ -2,7 +2,7 @@ package com.quintype.androidoxygen.services
 
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
-import com.quintype.androidoxygen.Constants
+import com.quintype.androidoxygen.OxygenConstants
 import com.quintype.androidoxygen.models.story.Story
 
 class StoriesListService {
@@ -27,14 +27,22 @@ class StoriesListService {
         }
     }
 
-    fun getStoriesListResponse(searchTerm: String, pageNumber: Int) =
-        storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getStoriesListResponse(searchTerm: String, pageNumber: Int, iPageLimit: Int) =
+        storiesListApiService.getTagStoriesList(
+            searchTerm,
+            iPageLimit,
+            pageNumber * iPageLimit
+        )
 
-    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int) =
-        storiesListApiService.getSearchStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int, iPageLimit: Int) =
+        storiesListApiService.getSearchStoriesList(
+            searchTerm,
+            iPageLimit,
+            pageNumber * iPageLimit
+        )
 
 //    fun getStoriesListResponse(searchTerm: String, pageNumber: Int): LiveData<Story> {
-//        mCompositeDisposable?.add(storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+//        mCompositeDisposable?.add(storiesListApiService.getTagStoriesList(searchTerm, OxygenConstants.PAGE_LIMIT, pageNumber * OxygenConstants.PAGE_LIMIT)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribeWith(object : ResourceSubscriber<TagListResponse>() {

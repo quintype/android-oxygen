@@ -1,6 +1,6 @@
 package com.quintype.androidoxygen.models
 
-import com.quintype.androidoxygen.Constants
+import com.quintype.androidoxygen.OxygenConstants
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -17,8 +17,8 @@ class BulkCollectionRequest(slug: String) {
     private var slug: String? = slug
     @SerializedName("limit")
     @Expose
-    private var limit: Int? = Constants.PAGE_LIMIT_CHILD
+    private var limit: Int? = OxygenConstants.PAGE_LIMIT_CHILD
     @SerializedName("story-fields")
     @Expose
-    private var storyField: String? = Constants.STORY_FIELDS
+    private var storyField: String? = OxygenConstants.STORY_FIELDS
 }

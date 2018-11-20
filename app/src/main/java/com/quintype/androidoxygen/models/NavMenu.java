@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
+import com.quintype.androidoxygen.OxygenConstants;
 import com.quintype.androidoxygen.models.sections.Section;
 import com.quintype.androidoxygen.models.story.Tag;
 
@@ -17,7 +18,7 @@ public class NavMenu implements Parcelable {
     public static final String TYPE_TAG = "tag";
     public static final String TYPE_LINK = "link";
     public static final NavMenu HOME = new NavMenu();
-    private static final String homeType = "home";
+    private static final String homeType = OxygenConstants.COLLECTION_HOME;
 
     static {
         HOME.id = "-149";

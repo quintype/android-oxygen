@@ -3,7 +3,7 @@ package com.quintype.androidoxygen.services
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.quintype.androidoxygen.Constants
+import com.quintype.androidoxygen.OxygenConstants
 import com.quintype.androidoxygen.ErrorHandler
 import com.quintype.androidoxygen.models.BulkTableModel
 import com.quintype.androidoxygen.models.collection.CollectionResponse
@@ -27,7 +27,8 @@ class CollectionService {
 
     fun getCollectionResponse(
         collectionSlug: String,
-        pageNumber: Int,
+        pageNumber: Int, iPageLimit: Int,
+        iCollectionLimit: Int,
         errorHandler: ErrorHandler?
     ): LiveData<BulkTableModel> {
         /*We are clearing the list when ever the page count is '0'. On swipe to refresh this will get executed. */
@@ -35,14 +36,14 @@ class CollectionService {
             collectionModelList.clear()
         Log.d(
             TAG,
-            "First Iteration Collection Slug - " + collectionSlug + " Limit - " + Constants.COLLECTION_LIMIT + " Offset - " + pageNumber * Constants.COLLECTION_LIMIT
+            "First Iteration Collection Slug - " + collectionSlug + " Limit - " + iCollectionLimit + " Offset - " + pageNumber * iCollectionLimit
         )
         Log.d(TAG, "CollectionModelList Size before API call - " + collectionModelList.size)
         val subscribeWith = collectionApiService.getCollectionApiService(
             collectionSlug,
-            Constants.COLLECTION_LIMIT,
-            pageNumber * Constants.COLLECTION_LIMIT,
-            Constants.STORY_FIELDS
+            iCollectionLimit,
+            pageNumber * iCollectionLimit,
+            OxygenConstants.STORY_FIELDS
         )
             .doOnError { error -> Log.d(TAG, "error is " + error.message) }
             .retry(3)
@@ -52,7 +53,7 @@ class CollectionService {
                 Log.d(TAG, "OnSuccess the total collectionItems is - " + mCollectionResponse.items?.size)
                 for (index in 0 until mCollectionResponse.items?.size as Int) {
                     val mCollectionItem = mCollectionResponse.items?.get(index)
-                    if (mCollectionItem?.type == Constants.TYPE_COLLECTION) {
+                    if (mCollectionItem?.type == OxygenConstants.TYPE_COLLECTION) {
                         Log.d(
                             TAG,
                             "The " + index + "th collection Item is COLLECTION type, the slug is " + mCollectionItem.slug
@@ -69,7 +70,7 @@ class CollectionService {
                         )
                         collectionModelList.add(bulkTableModel)
                         collectionData.value = bulkTableModel
-                    } else if (mCollectionItem?.type == Constants.TYPE_STORY) {
+                    } else if (mCollectionItem?.type == OxygenConstants.TYPE_STORY) {
                         Log.d(
                             TAG,
                             "The " + index + "th collection Item is STORY type, the headline is " + mCollectionItem.story?.headline
@@ -91,9 +92,9 @@ class CollectionService {
                 }
                 Flowable.fromIterable(mCollectionResponse.items)
             }
-            .filter { mCollectionItem -> mCollectionItem.type.equals(Constants.TYPE_COLLECTION) }
+            .filter { mCollectionItem -> mCollectionItem.type.equals(OxygenConstants.TYPE_COLLECTION) }
             .concatMapEager { mCollectionItem ->
-                var PAGE_LIMIT_CHILD = Constants.PAGE_LIMIT_CHILD
+                var PAGE_LIMIT_CHILD = iPageLimit
                 val noOfStoriesToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfStoriesToShow
                 if (noOfStoriesToShow != null && noOfStoriesToShow > 0) {
                     PAGE_LIMIT_CHILD = noOfStoriesToShow
@@ -106,8 +107,8 @@ class CollectionService {
                     mCollectionItem.slug as String,
                     PAGE_LIMIT_CHILD,
                     0,
-                    Constants.TYPE_STORY,
-                    Constants.STORY_FIELDS
+                    OxygenConstants.TYPE_STORY,
+                    OxygenConstants.STORY_FIELDS
                 )
                     .doOnError { error -> Log.d(TAG, "error is " + error.message) }
                     .retry(3)
@@ -141,14 +142,14 @@ class CollectionService {
                     }
                     for (index in 0 until mCollectionSize) {
                         val mCollectionItem = mCollectionItems.get(index)
-                        if (index == 0 && mCollectionItem.type?.equals(Constants.TYPE_COLLECTION) as Boolean) {
-                            if (mCollectionItem.template?.equals(Constants.WIDGET_TEMPLATE) == false) {
-                                getChildRxResponse(mCollectionItem.slug as String)
+                        if (index == 0 && mCollectionItem.type?.equals(OxygenConstants.TYPE_COLLECTION) as Boolean) {
+                            if (mCollectionItem.template?.equals(OxygenConstants.WIDGET_TEMPLATE) == false) {
+                                getChildRxResponse(mCollectionItem.slug as String, iPageLimit)
                                 //todo call child collection for 1st position if 0th position is widget
                             }
                         } else //todo call child collection for 1st position if 0th position is widget
                         {
-                            if (mCollectionItem.type?.equals(Constants.TYPE_STORY) as Boolean) {
+                            if (mCollectionItem.type?.equals(OxygenConstants.TYPE_STORY) as Boolean) {
                                 for (collectionListIndex in 0 until collectionModelList.size) {
                                     if (collectionModelList.get(collectionListIndex).slug?.equals(mCollectionSlug) == true) {
                                         val bulkModel: BulkTableModel = collectionModelList.get(collectionListIndex)
@@ -173,16 +174,16 @@ class CollectionService {
         return collectionData
     }
 
-    fun getChildRxResponse(collectionSlug: String) {
+    fun getChildRxResponse(collectionSlug: String, iPageLimit: Int) {
         val collectionApiService: CollectionApiService =
             RetrofitApiClient.getRetrofitApiClient().create(CollectionApiService::class.java)
         Log.d(TAG, "Second Iteration Collection Slug - " + collectionSlug)
         val subscribeWith = collectionApiService.getCollectionOnlyStoriesApiService(
             collectionSlug,
-            Constants.PAGE_LIMIT_CHILD,
+            iPageLimit,
             0,
-            Constants.TYPE_STORY,
-            Constants.STORY_FIELDS
+            OxygenConstants.TYPE_STORY,
+            OxygenConstants.STORY_FIELDS
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -206,11 +207,11 @@ class CollectionService {
                     Log.d(TAG, "onNext of second iteration collectionItem slug - ${mCollectionsModel.slug}")
                     for (index in 0 until mCollectionSize) {
                         val mCollectionItem = mCollectionItems[index]
-                        if (index == 0 && mCollectionItem.type?.equals(Constants.TYPE_COLLECTION) as Boolean) {
-                            if (mCollectionItem.template?.equals(Constants.WIDGET_TEMPLATE) == false) {
-                                getChildRxResponse(mCollectionItem.slug as String)
+                        if (index == 0 && mCollectionItem.type?.equals(OxygenConstants.TYPE_COLLECTION) as Boolean) {
+                            if (mCollectionItem.template?.equals(OxygenConstants.WIDGET_TEMPLATE) == false) {
+                                getChildRxResponse(mCollectionItem.slug as String, iPageLimit)
                             }
-                        } else if (mCollectionItem.type?.equals(Constants.TYPE_STORY) as Boolean) {
+                        } else if (mCollectionItem.type?.equals(OxygenConstants.TYPE_STORY) as Boolean) {
                             //Log.d(TAG, " second iteration api call success and onNext collectionSlug == $mCollectionSlug &&  collectionStory headline is ${mCollectionItem.story?.headline}")
                         }
                     }

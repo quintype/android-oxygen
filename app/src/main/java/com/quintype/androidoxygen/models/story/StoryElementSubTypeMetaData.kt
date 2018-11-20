@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.support.annotation.StringDef
 import android.text.TextUtils
-import com.quintype.androidoxygen.Constants
-import com.quintype.androidoxygen.Constants.Companion.TYPE_GALLERY
-import com.quintype.androidoxygen.Constants.Companion.TYPE_SLIDESHOW
+import com.quintype.androidoxygen.OxygenConstants
+import com.quintype.androidoxygen.OxygenConstants.Companion.TYPE_GALLERY
+import com.quintype.androidoxygen.OxygenConstants.Companion.TYPE_SLIDESHOW
 import com.google.gson.annotations.SerializedName
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
@@ -47,7 +47,7 @@ class StoryElementSubTypeMetaData : Parcelable {
     public val mBrightCovePosterURL: String
 
     @Retention(RetentionPolicy.SOURCE)
-    @StringDef(Constants.TYPE_SLIDESHOW, Constants.TYPE_GALLERY, Constants.TYPE_INVALID)
+    @StringDef(OxygenConstants.TYPE_SLIDESHOW, OxygenConstants.TYPE_GALLERY, OxygenConstants.TYPE_INVALID)
     annotation class Type
 
     override fun toString(): String {

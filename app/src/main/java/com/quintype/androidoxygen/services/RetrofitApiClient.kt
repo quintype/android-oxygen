@@ -1,6 +1,6 @@
 package com.quintype.androidoxygen.services
 
-import com.quintype.androidoxygen.Constants
+import com.quintype.androidoxygen.OxygenConstants
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,10 +25,10 @@ class RetrofitApiClient {
             .connectTimeout(30, TimeUnit.SECONDS)
 
         fun getRetrofitApiClient(): Retrofit {
-            if (Constants.BASE_URL != null)
+            if (OxygenConstants.BASE_URL != null)
                 retrofit = Retrofit
                     .Builder()
-                    .baseUrl(Constants.BASE_URL)
+                    .baseUrl(OxygenConstants.BASE_URL)
                     .client(builder.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
