@@ -33,7 +33,6 @@ class RetrofitApiClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
-
             return retrofit as Retrofit
         }
     }

@@ -23,7 +23,6 @@ class Constants {
             BASE_URL = mBaseUrl
         }
 
-
         //const val BASE_URL = "https://thequint-web.staging.quintype.io"
         //const val BASE_URL = "https://www.thequint.com"
         //const val BASE_URL = "https://madrid.quintype.io"

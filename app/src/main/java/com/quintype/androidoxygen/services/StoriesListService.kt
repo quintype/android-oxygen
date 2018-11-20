@@ -9,7 +9,8 @@ class StoriesListService {
     companion object {
         var storiesListService = StoriesListService()
         var storiesListApiService: StoriesListApiService = RetrofitApiClient.getRetrofitApiClient().create(
-            StoriesListApiService::class.java)
+            StoriesListApiService::class.java
+        )
         var mCompositeDisposable: CompositeDisposable? = null
 
         var mStoriesListData: MutableLiveData<Story> = MutableLiveData()
@@ -26,9 +27,11 @@ class StoriesListService {
         }
     }
 
-    fun getStoriesListResponse(searchTerm: String, pageNumber: Int) = storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getStoriesListResponse(searchTerm: String, pageNumber: Int) =
+        storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
 
-    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int) = storiesListApiService.getSearchStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
+    fun getSearchStoryListResponse(searchTerm: String, pageNumber: Int) =
+        storiesListApiService.getSearchStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
 
 //    fun getStoriesListResponse(searchTerm: String, pageNumber: Int): LiveData<Story> {
 //        mCompositeDisposable?.add(storiesListApiService.getTagStoriesList(searchTerm, Constants.PAGE_LIMIT, pageNumber * Constants.PAGE_LIMIT)
