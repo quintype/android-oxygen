@@ -75,7 +75,7 @@ public class NavMenuGroup implements ParentListItem, Parcelable {
     public String getName(Context context) {
         if (menuItem.id().equals(NavMenu.HOME.id())) {
             return context.getResources().getString(R.string.home_title);
-        } else {
+        }else{
             return menuItem.title();
         }
     }

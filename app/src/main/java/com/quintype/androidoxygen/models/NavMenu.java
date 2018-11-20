@@ -1,5 +1,4 @@
 package com.quintype.androidoxygen.models;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -11,7 +10,7 @@ import com.quintype.androidoxygen.models.sections.Section;
 import com.quintype.androidoxygen.models.story.Tag;
 
 /**
- * Created by Madhu on 22/07/15.
+ * Created by Rakshith on 10/8/18.
  */
 public class NavMenu implements Parcelable {
     public static final String TYPE_SECTION = "section";
@@ -162,12 +161,9 @@ public class NavMenu implements Parcelable {
     public Section section() {
         if (HOME.id.equalsIgnoreCase(id)) {
             return new Section(homeType);
-        } else
-
-        {
-            Section section = new Section(sectionName);
-            return section;
-        }
+        } else if (!TextUtils.isEmpty(sectionName)) {
+            return new Section(sectionName);
+        } else return null;
 
     }
 
@@ -175,8 +171,9 @@ public class NavMenu implements Parcelable {
      * @return an instance of tag
      */
     public Tag tag() {
-        Tag tag = new Tag(tagName);
-        return tag;
+        if (!TextUtils.isEmpty(tagName))
+            return new Tag(tagName);
+        else return null;
     }
 
     /**
