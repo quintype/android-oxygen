@@ -36,7 +36,7 @@ class StoryElementSubTypeMetaData : Parcelable {
     @SerializedName("file-name")
     internal var fileName: String? = null
     @SerializedName("has-header")
-    var hasHeader: Boolean = false
+    internal var hasHeader: Boolean = false
     @SerializedName("linked-story")
     internal var linkedStory: LinkedStory
     @SerializedName("linked-story-id")

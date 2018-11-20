@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 class StoryElementData : Parcelable {
 
     @SerializedName("content")
-    var content: String
+    internal var content: String
     @SerializedName("content-type")
     internal var contentType: String
 
