@@ -2,27 +2,23 @@ package com.quintype.androidoxygen.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-
 import com.google.gson.annotations.SerializedName;
-
-import com.quintype.androidoxygen.OxygenConstants;
 import com.quintype.androidoxygen.models.sections.Section;
 import com.quintype.androidoxygen.models.story.Tag;
 
 /**
- * Created by Rakshith on 10/8/18.
+ * Created by Madhu on 22/07/15.
  */
 public class NavMenu implements Parcelable {
     public static final String TYPE_SECTION = "section";
     public static final String TYPE_TAG = "tag";
     public static final String TYPE_LINK = "link";
+    public static final String TYPE_PLACEHOLDER = "placeholder";
     public static final NavMenu HOME = new NavMenu();
-    private static final String homeType = OxygenConstants.COLLECTION_HOME;
-
+    private static final String homeType = "home";
     static {
         HOME.id = "-149";
     }
-
     @SerializedName("updated-at")
     private long updatedAt;
     @SerializedName("tag-name")
@@ -49,59 +45,45 @@ public class NavMenu implements Parcelable {
     private String sectionName;
     @SerializedName("data")
     private NavMenuData data;
-
     public long updatedAt() {
         return updatedAt;
     }
-
     public String tagName() {
         return tagName;
     }
-
     public String publisherId() {
         return publisherId;
     }
-
     public String itemId() {
         return itemId;
     }
-
     public long rank() {
         return rank;
     }
-
     public String title() {
         return title;
     }
-
     public String type() {
         return type;
     }
-
     public String sectionSlug() {
         return sectionSlug;
     }
-
     public String id() {
         return id;
     }
-
     public String parentId() {
         return parentId;
     }
-
     public long createdAt() {
         return createdAt;
     }
-
     public String sectionName() {
         return sectionName;
     }
-
     public NavMenuData data() {
         return data;
     }
-
     @Override
     public String toString() {
         return "NavMenu{" +
@@ -119,28 +101,30 @@ public class NavMenu implements Parcelable {
                 ", data=" + data +
                 '}';
     }
-
     /**
      * @return true if type is section, false otherwise
      */
     public boolean isTypeSection() {
         return type.equalsIgnoreCase(TYPE_SECTION);
     }
-
     /**
      * @return true if type is tag, false otherwise
      */
     public boolean isTypeTag() {
         return type.equalsIgnoreCase(TYPE_TAG);
     }
-
     /**
      * @return true if type is link, false otherwise
      */
     public boolean isTypeLink() {
         return type.equalsIgnoreCase(TYPE_LINK);
     }
-
+    /**
+     * @return true if type is link, false otherwise
+     */
+    public boolean isTypePlaceholder() {
+        return type.equalsIgnoreCase(TYPE_PLACEHOLDER);
+    }
     /**
      * @return display name to be used in UI
      */
@@ -153,20 +137,16 @@ public class NavMenu implements Parcelable {
         }
         return title;
     }
-
     /**
      * @return build a section instance
      */
-
     public Section section() {
         if (HOME.id.equalsIgnoreCase(id)) {
             return new Section(homeType);
         } else if (!TextUtils.isEmpty(sectionName)) {
             return new Section(sectionName);
         } else return null;
-
     }
-
     /**
      * @return an instance of tag
      */
@@ -175,7 +155,6 @@ public class NavMenu implements Parcelable {
             return new Tag(tagName);
         else return null;
     }
-
     /**
      * update Title for the navMenu
      *
@@ -184,7 +163,6 @@ public class NavMenu implements Parcelable {
     public void title(String title) {
         this.title = title;
     }
-
     /**
      * update id for the navMenu
      *
@@ -193,7 +171,6 @@ public class NavMenu implements Parcelable {
     public void id(String id) {
         this.id = id;
     }
-
     /**
      * update section Name for the navMenu
      *
@@ -202,7 +179,6 @@ public class NavMenu implements Parcelable {
     public void sectionName(String sectionName) {
         this.sectionName = sectionName;
     }
-
     /**
      * update tag Name for the navMenu
      *
@@ -211,13 +187,10 @@ public class NavMenu implements Parcelable {
     public void tagName(String tagName) {
         this.tagName = tagName;
     }
-
-
     @Override
     public int describeContents() {
         return 0;
     }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.updatedAt);
@@ -234,10 +207,8 @@ public class NavMenu implements Parcelable {
         dest.writeString(this.sectionName);
         dest.writeParcelable(this.data, flags);
     }
-
     public NavMenu() {
     }
-
     protected NavMenu(Parcel in) {
         this.updatedAt = in.readLong();
         this.tagName = in.readString();
@@ -253,13 +224,11 @@ public class NavMenu implements Parcelable {
         this.sectionName = in.readString();
         this.data = in.readParcelable(NavMenuData.class.getClassLoader());
     }
-
     public static final Creator<NavMenu> CREATOR = new Creator<NavMenu>() {
         @Override
         public NavMenu createFromParcel(Parcel source) {
             return new NavMenu(source);
         }
-
         @Override
         public NavMenu[] newArray(int size) {
             return new NavMenu[size];
