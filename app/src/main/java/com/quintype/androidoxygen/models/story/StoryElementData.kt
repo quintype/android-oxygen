@@ -10,9 +10,9 @@ import com.google.gson.annotations.SerializedName
 class StoryElementData : Parcelable {
 
     @SerializedName("content")
-    internal var content: String
+    var content: String
     @SerializedName("content-type")
-    internal var contentType: String
+    var contentType: String
 
     override fun describeContents(): Int {
         return 0
@@ -23,7 +23,7 @@ class StoryElementData : Parcelable {
         dest.writeString(this.contentType)
     }
 
-    protected constructor(`in`: Parcel) {
+    constructor(`in`: Parcel) {
         this.content = `in`.readString()
         this.contentType = `in`.readString()
     }

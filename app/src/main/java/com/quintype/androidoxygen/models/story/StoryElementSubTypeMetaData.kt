@@ -34,11 +34,11 @@ class StoryElementSubTypeMetaData : Parcelable {
     @SerializedName("video-id")
     var videoId: String
     @SerializedName("file-name")
-    internal var fileName: String? = null
+    var fileName: String? = null
     @SerializedName("has-header")
-    internal var hasHeader: Boolean = false
+    var hasHeader: Boolean = false
     @SerializedName("linked-story")
-    internal var linkedStory: LinkedStory
+    var linkedStory: LinkedStory
     @SerializedName("linked-story-id")
     var linkedStoryId: String
     @SerializedName("account-id")
@@ -121,7 +121,7 @@ class StoryElementSubTypeMetaData : Parcelable {
         dest.writeString(this.mBrightCovePosterURL)
     }
 
-    protected constructor(parcel: Parcel) {
+    constructor(parcel: Parcel) {
         this.tweetUrl = parcel.readString()
         this.tweetId = parcel.readString()
         this.attribution = parcel.readString()

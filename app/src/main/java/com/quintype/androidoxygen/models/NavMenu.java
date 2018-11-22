@@ -17,8 +17,9 @@ public class NavMenu implements Parcelable {
     public static final String TYPE_SECTION = "section";
     public static final String TYPE_TAG = "tag";
     public static final String TYPE_LINK = "link";
+    public static final String TYPE_PLACEHOLDER = "placeholder";
     public static final NavMenu HOME = new NavMenu();
-    private static final String homeType = OxygenConstants.COLLECTION_HOME;
+    private static final String homeType = "home";
 
     static {
         HOME.id = "-149";
@@ -143,6 +144,13 @@ public class NavMenu implements Parcelable {
     }
 
     /**
+     * @return true if type is link, false otherwise
+     */
+    public boolean isTypePlaceholder() {
+        return type.equalsIgnoreCase(TYPE_PLACEHOLDER);
+    }
+
+    /**
      * @return display name to be used in UI
      */
     public String displayName() {
@@ -162,12 +170,9 @@ public class NavMenu implements Parcelable {
     public Section section() {
         if (HOME.id.equalsIgnoreCase(id)) {
             return new Section(homeType);
-        } else
-
-        {
-            Section section = new Section(sectionName);
-            return section;
-        }
+        } else if (!TextUtils.isEmpty(sectionName)) {
+            return new Section(sectionName);
+        } else return null;
 
     }
 
@@ -175,8 +180,9 @@ public class NavMenu implements Parcelable {
      * @return an instance of tag
      */
     public Tag tag() {
-        Tag tag = new Tag(tagName);
-        return tag;
+        if (!TextUtils.isEmpty(tagName))
+            return new Tag(tagName);
+        else return null;
     }
 
     /**
