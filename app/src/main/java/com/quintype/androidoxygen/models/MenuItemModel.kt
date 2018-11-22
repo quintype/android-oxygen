@@ -1,3 +1,5 @@
+package com.quintype.androidoxygen.models
+
 import android.os.Parcel
 import android.os.Parcelable
 
