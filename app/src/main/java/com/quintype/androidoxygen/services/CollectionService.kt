@@ -66,6 +66,7 @@ class CollectionService {
                             mCollectionItem.template,
                             null,
                             null,
+                            null,
                             null
                         )
                         collectionModelList.add(bulkTableModel)
@@ -78,6 +79,7 @@ class CollectionService {
                         val bulkTableModel = BulkTableModel(
                             mCollectionItem.story?.slug,
                             mCollectionItem.story,
+                            null,
                             null,
                             null,
                             null,
