@@ -517,14 +517,16 @@ public class StoryPresenter implements Parcelable {
     public void updateVideoStoryElementList() {
         if (story != null && story.template().equalsIgnoreCase("VIDEO") && flattenedStoryElements
                 != null && !flattenedStoryElements.isEmpty()) {
+            List<StoryElement> modifiedStoryElement = new ArrayList<>(flattenedStoryElements);
+
             for (StoryElement storyElement : flattenedStoryElements) {
-                List<StoryElement> modifiedStoryElement = new ArrayList<>(flattenedStoryElements);
-                if (storyElement.isTypeVideo() || storyElement.isTypeYoutube() || storyElement.isTypeBrightCoveVideo()) {
+                if (storyElement.isTypeVideo() || storyElement.isTypeYoutube()) {
                     modifiedStoryElement.remove(flattenedStoryElements.lastIndexOf(storyElement));
                     modifiedStoryElement.add(0, storyElement);
+
+                    flattenedStoryElements = modifiedStoryElement;
                     break;
                 }
-                flattenedStoryElements = modifiedStoryElement;
             }
         }
     }
