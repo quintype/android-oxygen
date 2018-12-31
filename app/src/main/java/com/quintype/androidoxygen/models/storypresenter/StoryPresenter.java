@@ -531,6 +531,23 @@ public class StoryPresenter implements Parcelable {
         }
     }
 
+    public void updatePhotoStoryElementList() {
+        if (story != null && story.template().equalsIgnoreCase("PHOTO") && flattenedStoryElements
+                != null && !flattenedStoryElements.isEmpty()) {
+            List<StoryElement> modifiedStoryElement = new ArrayList<>(flattenedStoryElements);
+
+            for (StoryElement storyElement : flattenedStoryElements) {
+                if (storyElement.isTypeComposite()) {
+                    modifiedStoryElement.remove(flattenedStoryElements.lastIndexOf(storyElement));
+                    modifiedStoryElement.add(0, storyElement);
+
+                    flattenedStoryElements = modifiedStoryElement;
+                    break;
+                }
+            }
+        }
+    }
+
     public List<StoryElement> FlattenedStoryElementList() {
         return flattenedStoryElements;
     }
