@@ -211,6 +211,56 @@ public class StoryPresenter implements Parcelable {
         cardPositions = positionArray;
     }
 
+    /**
+     * This constructor is created for Default LiveBlog Template
+     * Conditions for LiveBlog :
+     * - No any conditions, just follow the API order.
+     *
+     * @param story
+     * @param noSorting {This param is just to have a different signature}
+     */
+    StoryPresenter(Story story, String noSorting) {
+        this.story = story;
+        Map<String, EntityModel> parsedEntityMap = story.parsedEntityList();
+        int[] positionArray = new int[story.cards().size()];
+        int counter = 0;
+
+        for (Card card : story.cards()) {
+            card.buildUIStoryElements();
+            //keep a track of where each card starts
+            positionArray[counter] = flattenedStoryElements.size();
+
+            addLiveBlogStoryElements(card, null);
+
+            //parse the card attributes and put the list of card entities with its corresponding
+            //card position into a map
+            if (parsedEntityMap != null && !parsedEntityMap.isEmpty()
+                    && card.getMetadata() != null && card.getMetadata().attributes() != null) {
+                //parsing the attributes json into a map
+                Gson gson = new Gson();
+                JsonObject attributes = card.getMetadata().attributes();
+                Type type = new TypeToken<Map<String, List<EntityMapperItem>>>() {
+                }.getType();
+                Map<String, List<EntityMapperItem>> attributeMap = gson.fromJson(attributes, type);
+
+                //parsing the map to create a list of entities this card has
+                List<EntityModel> cardEntityList = new ArrayList<>();
+                for (List<EntityMapperItem> itemList : attributeMap.values()) {
+                    for (EntityMapperItem entityMapperItem : itemList) {
+                        cardEntityList.add(parsedEntityMap.get(entityMapperItem.getId()));
+                    }
+                }
+
+                // finally, adding the list of entities in this card to a map corresponding where
+                // the first story element in this card is in the flattenedStoryElements
+                cardEntityMap.put(counter, cardEntityList);
+            }
+            counter++;
+
+        }
+        cardPositions = positionArray;
+    }
+
     private void addLiveBlogStoryElements(Card card, JsonObject attributeJsonObj) {
 
         // Creating the new StoryElement of type TYPE_LIVE_BLOG_ADDED_AT_TIME_STAMP.
@@ -257,6 +307,19 @@ public class StoryPresenter implements Parcelable {
      */
     public static StoryPresenter create(Story story, boolean newestFirst) {
         return new StoryPresenter(story, newestFirst);
+    }
+
+    /**
+     * Create StoryPresenter
+     * <p>
+     * Setup StoryElements of the Story
+     *
+     * @param story     {@link Story}
+     * @param noSorting {Story cards as we get from API, no any kind of sorting }
+     * @return {@link StoryPresenter}
+     */
+    public static StoryPresenter create(Story story, String noSorting) {
+        return new StoryPresenter(story, noSorting);
     }
 
     /**

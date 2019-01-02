@@ -767,9 +767,9 @@ public class Story implements Parcelable {
      *
      * @return true if the story's template is a live blog, false otherwise
      */
-//    public boolean isLiveBlogTemplate() {
-//        return StringUtils.equalsIgnoreCase(TYPE_TEMPLATE_LIVE_BLOG, template);
-//    }
+    public boolean isLiveBlogTemplate() {
+        return template.equalsIgnoreCase(TYPE_TEMPLATE_LIVE_BLOG);
+    }
 
     /**
      * check whether the story's theme is a longform or parallax
