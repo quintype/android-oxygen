@@ -44,6 +44,9 @@ public class StoryPresenter implements Parcelable {
     //base view type to increment custom view types
     static final int INCREMENTAL_BASE_VIEW_TYPE = 1000;
 
+    static final String STORY_TEMPLATE_DEFAULT_LIVE_BLOG = "default_live_blog_story";
+    static final String STORY_TEMPLATE_LISTICLE = "listicle_story";
+
     /**
      * // Known view types while recreating
      * viewType = 1 // actual view type
@@ -212,14 +215,14 @@ public class StoryPresenter implements Parcelable {
     }
 
     /**
-     * This constructor is created for Default LiveBlog Template
-     * Conditions for LiveBlog :
-     * - No any conditions, just follow the API order.
+     * This constructor is created for Default LiveBlog and Listicle story templates
+     * Conditions for LiveBlog - No any conditions, just follow the API order.
+     * Conditions for Listing - Look for the first image element inside a card and move that image to the top of the card.
      *
      * @param story
-     * @param noSorting {This param is just to have a different signature}
+     * @param storyType {This is story Template basically}
      */
-    StoryPresenter(Story story, String noSorting) {
+    StoryPresenter(Story story, String storyType) {
         this.story = story;
         Map<String, EntityModel> parsedEntityMap = story.parsedEntityList();
         int[] positionArray = new int[story.cards().size()];
@@ -230,12 +233,14 @@ public class StoryPresenter implements Parcelable {
             //keep a track of where each card starts
             positionArray[counter] = flattenedStoryElements.size();
 
-            addLiveBlogStoryElements(card, null);
+            if (storyType.equals(STORY_TEMPLATE_DEFAULT_LIVE_BLOG))
+                addLiveBlogStoryElements(card, null);
+            else if (storyType.equals(STORY_TEMPLATE_LISTICLE))
+                addListicleStoryElement(card);
 
             //parse the card attributes and put the list of card entities with its corresponding
             //card position into a map
-            if (parsedEntityMap != null && !parsedEntityMap.isEmpty()
-                    && card.getMetadata() != null && card.getMetadata().attributes() != null) {
+            if (parsedEntityMap != null && !parsedEntityMap.isEmpty() && card.getMetadata().attributes() != null) {
                 //parsing the attributes json into a map
                 Gson gson = new Gson();
                 JsonObject attributes = card.getMetadata().attributes();
@@ -285,6 +290,26 @@ public class StoryPresenter implements Parcelable {
     }
 
     /**
+     * For Listicle story inside cards the storyElements order will be mostly like 1.Title, 2.Image, & 3.Text(Description).
+     * But as per the design we need to show the image first, assuming all the cards will have one image at-least.
+     * Look for the first image element inside a card and move that image to the top of the card.
+     *
+     * @param card
+     */
+    private void addListicleStoryElement(Card card) {
+        boolean isImageReplaced = false;
+        final int lastKnownSize = flattenedStoryElements.size();// Size of the flattenedStoryElements List before adding this card elements.
+        List<StoryElement> storyElements = card.getUiStoryElements();
+        for (StoryElement elem : storyElements) {
+            if (elem.isTypeImage() || elem.isTypeImageGif() && !isImageReplaced) {
+                flattenedStoryElements.add(lastKnownSize - 1, elem);
+                isImageReplaced = true;
+            }
+            flattenedStoryElements.add(elem);
+        }
+    }
+
+    /**
      * Create StoryPresenter
      * <p>
      * Setup StoryElements of the Story
@@ -292,7 +317,7 @@ public class StoryPresenter implements Parcelable {
      * @param story {@link Story}
      * @return {@link StoryPresenter}
      */
-    public static StoryPresenter create(Story story) {
+    public static StoryPresenter createDefaultStoryPresenter(Story story) {
         return new StoryPresenter(story);
     }
 
@@ -305,7 +330,7 @@ public class StoryPresenter implements Parcelable {
      * @param newestFirst {Story cards sorting order, can be either OldestFirst 'FALSE' or NewestFirst'TRUE' }
      * @return {@link StoryPresenter}
      */
-    public static StoryPresenter create(Story story, boolean newestFirst) {
+    public static StoryPresenter createTheQuintLiveBlogStoryPresenter(Story story, boolean newestFirst) {
         return new StoryPresenter(story, newestFirst);
     }
 
@@ -318,7 +343,7 @@ public class StoryPresenter implements Parcelable {
      * @param noSorting {Story cards as we get from API, no any kind of sorting }
      * @return {@link StoryPresenter}
      */
-    public static StoryPresenter create(Story story, String noSorting) {
+    public static StoryPresenter createLiveBlogStoryPresenter(Story story, String noSorting) {
         return new StoryPresenter(story, noSorting);
     }
 
@@ -488,7 +513,6 @@ public class StoryPresenter implements Parcelable {
 
     /**
      * Get Story element at position from the list of story elements in a story
-     * see {@link #create(Story)}
      *
      * @param position int position for Story Element
      * @return {@link StoryElement}
