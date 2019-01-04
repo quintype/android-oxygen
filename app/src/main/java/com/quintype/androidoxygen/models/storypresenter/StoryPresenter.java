@@ -302,10 +302,10 @@ public class StoryPresenter implements Parcelable {
         List<StoryElement> storyElements = card.getUiStoryElements();
         for (StoryElement elem : storyElements) {
             if (elem.isTypeImage() || elem.isTypeImageGif() && !isImageReplaced) {
-                flattenedStoryElements.add(lastKnownSize - 1, elem);
+                flattenedStoryElements.add(lastKnownSize, elem); // Assuming we always get the Intro card.
                 isImageReplaced = true;
-            }
-            flattenedStoryElements.add(elem);
+            } else
+                flattenedStoryElements.add(elem);
         }
     }
 
