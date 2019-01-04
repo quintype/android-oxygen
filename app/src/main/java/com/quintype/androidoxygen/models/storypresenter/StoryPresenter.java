@@ -227,8 +227,9 @@ public class StoryPresenter implements Parcelable {
         Map<String, EntityModel> parsedEntityMap = story.parsedEntityList();
         int[] positionArray = new int[story.cards().size()];
         int counter = 0;
-
-        for (Card card : story.cards()) {
+        for (int i = 0; i < story.cards.size(); i++) {
+            Card card = story.cards.get(i);
+            //for (Card card : story.cards()) {
             card.buildUIStoryElements();
             //keep a track of where each card starts
             positionArray[counter] = flattenedStoryElements.size();
@@ -236,7 +237,7 @@ public class StoryPresenter implements Parcelable {
             if (storyType.equals(STORY_TEMPLATE_DEFAULT_LIVE_BLOG))
                 addLiveBlogStoryElements(card, null);
             else if (storyType.equals(STORY_TEMPLATE_LISTICLE))
-                addListicleStoryElement(card);
+                addListicleStoryElement(card, i);
 
             //parse the card attributes and put the list of card entities with its corresponding
             //card position into a map
@@ -295,13 +296,15 @@ public class StoryPresenter implements Parcelable {
      * Look for the first image element inside a card and move that image to the top of the card.
      *
      * @param card
+     * @param cardPosition
      */
-    private void addListicleStoryElement(Card card) {
+    private void addListicleStoryElement(Card card, int cardPosition) {
         boolean isImageReplaced = false;
         final int lastKnownSize = flattenedStoryElements.size();// Size of the flattenedStoryElements List before adding this card elements.
         List<StoryElement> storyElements = card.getUiStoryElements();
         for (StoryElement elem : storyElements) {
-            if (elem.isTypeImage() || elem.isTypeImageGif() && !isImageReplaced) {
+            if ((elem.isTypeImage() || elem.isTypeImageGif()) && !isImageReplaced) {
+                elem.setListicleCardCount(cardPosition + 1);
                 flattenedStoryElements.add(lastKnownSize, elem); // Assuming we always get the Intro card.
                 isImageReplaced = true;
             } else

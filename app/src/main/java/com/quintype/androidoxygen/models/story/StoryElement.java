@@ -185,6 +185,7 @@ public class StoryElement implements Parcelable {
     private Long cardAddedAt;// Used for TheQuint's LiveBlogTemplate
     private boolean keyEvent;// Used for TheQuint's LiveBlogTemplate
     private boolean cardPinStatus;
+    private int listicleCardCount = 0;//Used for Listicle Story Template
 
     @Override
     public String toString() {
@@ -227,6 +228,7 @@ public class StoryElement implements Parcelable {
         this.keyEvent = element.keyEvent;
         this.imageAttribution = element.imageAttribution;
         this.cardPinStatus = element.cardPinStatus;
+        this.listicleCardCount = element.listicleCardCount;
     }
 
     /**
@@ -793,6 +795,7 @@ public class StoryElement implements Parcelable {
         dest.writeByte((byte) (keyEvent ? 1 : 0));
         dest.writeString(this.imageAttribution);
         dest.writeByte((byte) (cardPinStatus ? 1 : 0));
+        dest.writeInt(this.listicleCardCount);
     }
 
     protected StoryElement(Parcel in) {
@@ -819,6 +822,7 @@ public class StoryElement implements Parcelable {
         this.keyEvent = in.readByte() != 0;
         this.imageAttribution = in.readString();
         this.cardPinStatus = in.readByte() != 0;
+        this.listicleCardCount = in.readInt();
     }
 
     public static final Creator<StoryElement> CREATOR = new Creator<StoryElement>() {
@@ -851,5 +855,13 @@ public class StoryElement implements Parcelable {
 
     public void setCardPinStatus(boolean cardPinStatus) {
         this.cardPinStatus = cardPinStatus;
+    }
+
+    public int getListicleCardCount() {
+        return listicleCardCount;
+    }
+
+    public void setListicleCardCount(int listicleCardCount) {
+        this.listicleCardCount = listicleCardCount;
     }
 }
