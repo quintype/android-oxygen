@@ -44,8 +44,8 @@ public class StoryPresenter implements Parcelable {
     //base view type to increment custom view types
     static final int INCREMENTAL_BASE_VIEW_TYPE = 1000;
 
-    static final String STORY_TEMPLATE_DEFAULT_LIVE_BLOG = "default_live_blog_story";
-    static final String STORY_TEMPLATE_LISTICLE = "listicle_story";
+    public static final String STORY_TEMPLATE_DEFAULT_LIVE_BLOG = "default_live_blog_story";
+    public static final String STORY_TEMPLATE_LISTICLE = "listicle_story";
 
     /**
      * // Known view types while recreating
@@ -340,11 +340,11 @@ public class StoryPresenter implements Parcelable {
      * Setup StoryElements of the Story
      *
      * @param story     {@link Story}
-     * @param noSorting {Story cards as we get from API, no any kind of sorting }
+     * @param storyType {This is story Template basically }
      * @return {@link StoryPresenter}
      */
-    public static StoryPresenter createLiveBlogStoryPresenter(Story story, String noSorting) {
-        return new StoryPresenter(story, noSorting);
+    public static StoryPresenter createTemplateStoryPresenter(Story story, String storyType) {
+        return new StoryPresenter(story, storyType);
     }
 
     /**
