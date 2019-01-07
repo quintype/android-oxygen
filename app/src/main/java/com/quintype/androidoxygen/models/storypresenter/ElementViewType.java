@@ -38,6 +38,8 @@ public @interface ElementViewType {
 
     int STORY_HERO_AUTHOR = 51;
     int STORY_TAG = 52;
+    int ME_TYPE = 53;
+    int STORY_FEEDBACK = 54;
 
     public static class Process {
         public Process() {
