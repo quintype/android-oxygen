@@ -861,70 +861,70 @@ public class Story implements Parcelable {
     /**
      * @return list of all image elements along with a fake hero element
      */
-//    public List<StoryElement> getImageElementsWithHeroElement() {
-//        List<StoryElement> imageElements = new ArrayList<>();
-//        StoryElement heroCard = getHeroElement();
-//        imageElements.add(heroCard);
-//        if (cards != null) {
-//            for (Card card : cards) {
-//                for (StoryElement elem : card.storyElements()) {
-//                    if (elem.isTypeImage() && !elem.isTypeImageGif()) {
-//                        imageElements.add(elem);
-//                    }
-//                }
-//            }
-//        }
-//        return imageElements;
-//    }
+    public List<StoryElement> getImageElementsWithHeroElement() {
+        List<StoryElement> imageElements = new ArrayList<>();
+        StoryElement heroCard = getHeroElement();
+        imageElements.add(heroCard);
+        if (cards != null) {
+            for (Card card : cards) {
+                for (StoryElement elem : card.storyElements()) {
+                    if (elem.isTypeImage() && !elem.isTypeImageGif()) {
+                        imageElements.add(elem);
+                    }
+                }
+            }
+        }
+        return imageElements;
+    }
 
     /**
      * @return a list of all image elements along with hero element and gif elements
      */
-//    public List<StoryElement> getAllImageElements() {
-//        List<StoryElement> imageElements = new ArrayList<>();
-//        StoryElement heroCard = getHeroElement();
-//        imageElements.add(heroCard);
-//        if (cards != null) {
-//            for (Card card : cards) {
-//                for (StoryElement elem : card.storyElements()) {
-//                    if (elem.isTypeImage()) {
-//                        imageElements.add(elem);
-//                    }
-//                }
-//            }
-//        }
-//        return imageElements;
-//    }
-//
-//    public List<StoryElement> getImageElementsInCards() {
-//        List<StoryElement> imageElements = new ArrayList<>();
-//        if (cards != null) {
-//            for (Card card : cards) {
-//                for (StoryElement elem : card.storyElements()) {
-//                    if (elem.isTypeComposite() && (elem.subTypeMeta() != null && (elem
-//                            .subTypeMeta().isTypeGallery()) || elem.subTypeMeta().isTypeSlideShow
-//                            ())) {
-//                        imageElements.addAll(elem.storyElements());
-//                    }
-//                }
-//            }
-//        }
-//        return imageElements;
-//    }
-//
-//    public List<StoryElement> getSlideshowImageElementsInCards() {
-//        List<StoryElement> imageElements = new ArrayList<>();
-//        if (cards != null) {
-//            for (Card card : cards) {
-//                for (StoryElement elem : card.storyElements()) {
-//                    if (elem.isTypeComposite() || elem.subTypeMeta().isTypeSlideShow()) {
-//                        imageElements.addAll(elem.storyElements());
-//                    }
-//                }
-//            }
-//        }
-//        return imageElements;
-//    }
+    public List<StoryElement> getAllImageElements() {
+        List<StoryElement> imageElements = new ArrayList<>();
+        StoryElement heroCard = getHeroElement();
+        imageElements.add(heroCard);
+        if (cards != null) {
+            for (Card card : cards) {
+                for (StoryElement elem : card.storyElements()) {
+                    if (elem.isTypeImage()) {
+                        imageElements.add(elem);
+                    }
+                }
+            }
+        }
+        return imageElements;
+    }
+
+    public List<StoryElement> getImageElementsInCards() {
+        List<StoryElement> imageElements = new ArrayList<>();
+        if (cards != null) {
+            for (Card card : cards) {
+                for (StoryElement elem : card.storyElements()) {
+                    if (elem.isTypeComposite() && (elem.subTypeMeta() != null && (elem
+                            .subTypeMeta().isTypeGallery()) || elem.subTypeMeta().isTypeSlideShow
+                            ())) {
+                        imageElements.addAll(elem.storyElements());
+                    }
+                }
+            }
+        }
+        return imageElements;
+    }
+
+    public List<StoryElement> getSlideshowImageElementsInCards() {
+        List<StoryElement> imageElements = new ArrayList<>();
+        if (cards != null) {
+            for (Card card : cards) {
+                for (StoryElement elem : card.storyElements()) {
+                    if (elem.isTypeComposite() || elem.subTypeMeta().isTypeSlideShow()) {
+                        imageElements.addAll(elem.storyElements());
+                    }
+                }
+            }
+        }
+        return imageElements;
+    }
     public Story() {
     }
 

@@ -167,6 +167,10 @@ class Card : Parcelable {
         this.storyElements = storyElements
     }
 
+    fun storyElements(): List<StoryElement> {
+        return storyElements
+    }
+
 //    fun dummyCard(): Card {
 //        val card = Card()
 //        card.id = UUID.randomUUID().toString()
