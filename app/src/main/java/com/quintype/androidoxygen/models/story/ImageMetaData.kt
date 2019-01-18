@@ -27,6 +27,8 @@ class ImageMetaData : Parcelable {
                 '}'.toString()
     }
 
+
+
     override fun describeContents(): Int {
         return 0
     }

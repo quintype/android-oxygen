@@ -18,33 +18,33 @@ import java.lang.annotation.RetentionPolicy
 class StoryElementSubTypeMetaData : Parcelable {
 
     @SerializedName("tweet-url")
-    public val tweetUrl: String
+    public val tweetUrl: String?
     @SerializedName("tweet-id")
-    public val tweetId: String
+    public val tweetId: String?
     @SerializedName("attribution")
-    public val attribution: String
+    public val attribution: String?
     @SerializedName("content")
-    public val content: String
+    public val content: String?
     @SerializedName("type")
-    public val type: String
+    public val type: String?
     @SerializedName("question")
-    public val question: String
+    public val question: String?
     @SerializedName("answer")
-    public val answer: String
+    public val answer: String?
     @SerializedName("video-id")
-    var videoId: String
+    var videoId: String?
     @SerializedName("file-name")
     var fileName: String? = null
     @SerializedName("has-header")
     var hasHeader: Boolean = false
     @SerializedName("linked-story")
-    var linkedStory: LinkedStory
+    var linkedStory: LinkedStory?
     @SerializedName("linked-story-id")
-    var linkedStoryId: String
+    var linkedStoryId: String?
     @SerializedName("account-id")
-    public val mBrightCoveAccountID: String
+    public val mBrightCoveAccountID: String?
     @SerializedName("poster-url")
-    public val mBrightCovePosterURL: String
+    public val mBrightCovePosterURL: String?
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef(OxygenConstants.TYPE_SLIDESHOW, OxygenConstants.TYPE_GALLERY, OxygenConstants.TYPE_INVALID)
