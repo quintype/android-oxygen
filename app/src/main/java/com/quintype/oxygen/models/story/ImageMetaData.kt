@@ -30,6 +30,8 @@ class ImageMetaData protected constructor(parcel: Parcel) : Parcelable {
                 '}'.toString()
     }
 
+
+
     override fun describeContents(): Int {
         return 0
     }
