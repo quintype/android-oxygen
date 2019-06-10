@@ -1,19 +1,28 @@
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
+// Manifest version information!. Please don't add double digit numbers.
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
     defaultConfig {
-//        applicationId "com.quintype.androidoxygen"
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        def appVersionName = "$versionMajor.$versionMinor.$versionPatch.$versionBuild"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName appVersionName
+
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false

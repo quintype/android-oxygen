@@ -1,4 +1,4 @@
-package com.quintype.androidoxygen
+package com.quintype.oxygen
 
 import org.junit.Test
 

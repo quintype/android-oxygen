@@ -1,4 +1,4 @@
-package com.quintype.androidoxygen
+package com.quintype.oxygen
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.quintype.androidoxygen", appContext.packageName)
+        assertEquals("com.quintype.oxygen", appContext.packageName)
     }
 }
