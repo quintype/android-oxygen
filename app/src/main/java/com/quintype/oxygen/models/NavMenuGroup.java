@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
-import com.vikatanapp.R;
+import com.quintype.oxygen.R;
 
 import java.util.ArrayList;
 import java.util.List;

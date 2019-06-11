@@ -206,14 +206,14 @@ public class StoryPresenter implements Parcelable {
                 addLiveBlogStoryElements(card, null);
             else if (STORY_TEMPLATE_LISTICLE.equals(storyType) && LISTICLE_BULLETIN_123.equals(story.bulletType))
                 addListicleStoryElement(card, i);/*No need to do ant thing just send the position as it is.*/
-            else if (STORY_TEMPLATE_LISTICLE.equals(storyType)&& LISTICLE_BULLETIN_321.equals(story.bulletType)) {
+            else if (STORY_TEMPLATE_LISTICLE.equals(storyType) && LISTICLE_BULLETIN_321.equals(story.bulletType)) {
                 /*If the bulletin is in reverse order the position also as to be in reverse.*/
                 /*Ignore the first item, we are assuming first item will always be the intro card.*/
                 if (i == 0)
                     addListicleStoryElement(card, i);
                 else
                     addListicleStoryElement(card, cardList.size() - i);
-            }else if(STORY_TEMPLATE_LISTICLE.equals(storyType) && LISTICLE_BULLETIN_BULLETS.equals(story.bulletType))
+            } else if (STORY_TEMPLATE_LISTICLE.equals(storyType) && LISTICLE_BULLETIN_BULLETS.equals(story.bulletType))
                 addListicleStoryElement(card, 0);/*No need to do ant thing, no need of positions also.*/
 
 

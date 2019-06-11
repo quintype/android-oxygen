@@ -23,6 +23,7 @@ class EntitiesMetaData(source: Parcel) : Parcelable {
         val CREATOR: Parcelable.Creator<EntitiesMetaData> = object : Parcelable.Creator<EntitiesMetaData> {
             override fun createFromParcel(source: Parcel): EntitiesMetaData =
                 EntitiesMetaData(source)
+
             override fun newArray(size: Int): Array<EntitiesMetaData?> = arrayOfNulls(size)
         }
     }

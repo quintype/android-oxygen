@@ -7,7 +7,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class MenuGroups : Parcelable {
-
     @Expose
     @SerializedName("menu-groups")
     var mMenuGroups: MenuGroup? = null

@@ -1,14 +1,14 @@
 package com.quintype.oxygen.models
 
 import android.text.TextUtils
+import com.quintype.oxygen.OxygenConstants.Companion.COLLECTION_SLUG
+import com.quintype.oxygen.TYPE_INVALID_TYPE
+import com.quintype.oxygen.WIDTH_PERCENTAGE_100
 import com.quintype.oxygen.models.collection.AssociatedMetadata
 import com.quintype.oxygen.models.collection.BreakingNewsModel
 import com.quintype.oxygen.models.collection.CollectionItem
 import com.quintype.oxygen.models.collection.Metadata
 import com.quintype.oxygen.models.story.Story
-import com.vikatanapp.vikatan.utils.COLLECTION_SLUG
-import com.vikatanapp.vikatan.utils.TYPE_INVALID_TYPE
-import com.vikatanapp.vikatan.utils.WIDTH_PERCENTAGE_100
 
 class CollectionInnerListModel(mCollectionInnerListBuilder: CollectionInnerListBuilder) {
     var story: Story? = mCollectionInnerListBuilder.story

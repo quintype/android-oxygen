@@ -8,7 +8,10 @@ import com.quintype.oxygen.models.collection.CollectionResponse
 /**
  *  This model includes the innerCollectionItem and respective response for those items(Making an API call to get the response for innerItem)
  */
-open class InnerCollectionItemModel(var mCollectionItem: CollectionItem, var mCollectionInnerResponse: CollectionResponse?) {
+open class InnerCollectionItemModel(
+    var mCollectionItem: CollectionItem,
+    var mCollectionInnerResponse: CollectionResponse?
+) {
 
     /**
      * duplicate the object

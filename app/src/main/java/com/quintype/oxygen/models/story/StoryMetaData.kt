@@ -20,15 +20,15 @@ class StoryMetaData protected constructor(parcel: Parcel) : Parcelable {
     @SerializedName("is-closed")
     var isClosed: Boolean = false
     @SerializedName("review-title")
-    var reviewTitle: String?=null
+    var reviewTitle: String? = null
     @SerializedName("review-rating")
-    var reviewRating: ExtraData?=null
+    var reviewRating: ExtraData? = null
     @SerializedName("story-attributes")
     var storyAttributes: JsonObject? = null
     @SerializedName("reference-url")
-    var referenceUrl: String?=null
+    var referenceUrl: String? = null
     @SerializedName("sponsored-by")
-    var sponsoredBy: String?=null
+    var sponsoredBy: String? = null
 
     override fun toString(): String {
         return "StoryMetaData{" +

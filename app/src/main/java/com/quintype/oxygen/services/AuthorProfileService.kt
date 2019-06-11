@@ -6,8 +6,8 @@ import com.quintype.oxygen.ErrorHandler
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.models.collection.CollectionResponse
 import com.quintype.oxygen.models.story.Story
-import com.vikatanapp.vikatan.utils.logdExt
-import com.vikatanapp.vikatan.utils.logeExt
+import com.quintype.oxygen.utils.widgets.logdExt
+import com.quintype.oxygen.utils.widgets.logeExt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -22,14 +22,25 @@ class AuthorProfileService {
     /**
      * Method to get only stories written by the author
      */
-    fun getAuthorProfileStoriesResponse(mAuthorId: String, pageNumber: Int, iPageLimit: Int, errorHandler: ErrorHandler?): LiveData<List<Story>> {
+    fun getAuthorProfileStoriesResponse(
+        mAuthorId: String,
+        pageNumber: Int,
+        iPageLimit: Int,
+        errorHandler: ErrorHandler?
+    ): LiveData<List<Story>> {
         mObserver?.dispose()
         logdExt("First Iteration Collection Slug - " + mAuthorId + "  Limit - " + iPageLimit + " Offset - " + pageNumber * iPageLimit)
 
         //story list
         val storyList = ArrayList<Story>()
 
-        mObserver = mAuthorProfileApiService.getStoriesByAuthorApiService(mAuthorId, iPageLimit, pageNumber, OxygenConstants.TYPE_STORY, OxygenConstants.STORY_FIELDS)
+        mObserver = mAuthorProfileApiService.getStoriesByAuthorApiService(
+            mAuthorId,
+            iPageLimit,
+            pageNumber,
+            OxygenConstants.TYPE_STORY,
+            OxygenConstants.STORY_FIELDS
+        )
             .map { mAuthorProfileResponse ->
                 mAuthorProfileResponse.items?.forEach { mCollectionItem ->
                     if (mCollectionItem.story != null)

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--for custom rating bar -->
+    <declare-styleable name="CustomRatingBar">
+        <attr name="maxStars" format="integer"/>
+        <attr name="stars" format="float"/>
+        <attr name="starOff" format="reference|integer"/>
+        <attr name="starOn" format="reference|integer"/>
+        <attr name="starHalf" format="reference|integer"/>
+        <attr name="starPadding" format="dimension"/>
+        <attr name="onlyForDisplay" format="boolean"/>
+        <attr name="halfStars" format="boolean"/>
+    </declare-styleable>
+
+    <!--for custom rating bar -->
+    <declare-styleable name="StoryListTitleLiveBlogWidget">
+        <attr name="backGroundColor" format="integer"/>
+        <attr name="titleColor" format="reference|integer"/>
+        <attr name="titleSize" format="integer"/>
+        <attr name="maxLines" format="integer"/>
+    </declare-styleable>
+
+    <!--for Expandable layout(summary element)-->
+    <declare-styleable name="ExpandableLayout">
+        <attr name="el_headerLayout" format="reference"/>
+        <attr name="el_contentLayout" format="reference"/>
+        <attr name="el_duration" format="integer"/>
+    </declare-styleable>
+
+    <!--for Flow layout(tags element)-->
+    <declare-styleable name="FlowLayout">
+        <attr name="verticalSpacing" format="dimension"/>
+        <attr name="horizontalSpacing" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="textFontSize">
+        <attr name="size_8sp" format="dimension"/>
+        <attr name="size_10sp" format="dimension"/>
+        <attr name="size_11sp" format="dimension"/>
+        <attr name="size_12sp" format="dimension"/>
+        <attr name="size_14sp" format="dimension"/>
+        <attr name="size_16sp" format="dimension"/>
+        <attr name="size_17sp" format="dimension"/>
+        <attr name="size_18sp" format="dimension"/>
+        <attr name="size_20sp" format="dimension"/>
+        <attr name="size_22sp" format="dimension"/>
+        <attr name="size_24sp" format="dimension"/>
+        <attr name="size_26sp" format="dimension"/>
+        <attr name="size_28sp" format="dimension"/>
+        <attr name="size_32sp" format="dimension"/>
+        <attr name="size_42sp" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="SlidingUpPanelLayout">
+        <attr name="umanoPanelHeight" format="dimension"/>
+        <attr name="umanoShadowHeight" format="dimension"/>
+        <attr name="umanoParallaxOffset" format="dimension"/>
+        <attr name="umanoFadeColor" format="color"/>
+        <attr name="umanoFlingVelocity" format="integer"/>
+        <attr name="umanoDragView" format="reference"/>
+        <attr name="umanoScrollableView" format="reference"/>
+        <attr name="umanoOverlay" format="boolean"/>
+        <attr name="umanoClipPanel" format="boolean"/>
+        <attr name="umanoAnchorPoint" format="float"/>
+        <attr name="scrollView" format="reference"/>
+        <attr name="umanoInitialState" format="enum">
+            <enum name="expanded" value="0"/>
+            <enum name="collapsed" value="1"/>
+            <enum name="anchored" value="2"/>
+            <enum name="hidden" value="3"/>
+        </attr>
+        <attr name="umanoScrollInterpolator" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressButton">
+        <attr name="cpb_selectorIdle" format="reference" />
+        <attr name="cpb_selectorComplete" format="reference" />
+        <attr name="cpb_selectorError" format="reference" />
+        <attr name="cpb_textComplete" format="string" />
+        <attr name="cpb_textIdle" format="string" />
+        <attr name="cpb_textError" format="string" />
+        <attr name="cpb_textProgress" format="string" />
+        <attr name="cpb_colorProgress" format="color" />
+        <attr name="cpb_colorIndicator" format="color" />
+        <attr name="cpb_colorIndicatorBackground" format="color" />
+        <attr name="cpb_iconError" format="reference" />
+        <attr name="cpb_iconComplete" format="reference" />
+        <attr name="cpb_cornerRadius" format="dimension" />
+        <attr name="cpb_paddingProgress" format="dimension" />
+    </declare-styleable>
+</resources>

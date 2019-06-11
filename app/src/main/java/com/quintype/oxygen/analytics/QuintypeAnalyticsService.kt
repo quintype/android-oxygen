@@ -12,9 +12,8 @@ import com.quintype.oxygen.models.sections.Section
 import com.quintype.oxygen.models.story.Card
 import com.quintype.oxygen.models.story.Story
 import com.quintype.oxygen.models.story.StoryElement
-import com.quintype.oxygen.analytics.models.*
-import com.vikatanapp.vikatan.utils.logdExt
-import com.vikatanapp.vikatan.utils.logeExt
+import com.quintype.oxygen.utils.widgets.logdExt
+import com.quintype.oxygen.utils.widgets.logeExt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient

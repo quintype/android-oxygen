@@ -10,7 +10,7 @@ import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.vikatanapp.R
+import com.quintype.oxygen.R
 
 class CustomRatingBar : LinearLayout {
 
@@ -61,9 +61,12 @@ class CustomRatingBar : LinearLayout {
             when (attr) {
                 R.styleable.CustomRatingBar_maxStars -> mMaxStars = typedArray.getInt(attr, 5)
                 R.styleable.CustomRatingBar_stars -> mCurrentScore = typedArray.getFloat(attr, 2.5f)
-                R.styleable.CustomRatingBar_starHalf -> mStarHalfResource = typedArray.getResourceId(attr, R.drawable.ic_half_star_review)
-                R.styleable.CustomRatingBar_starOn -> mStarOnResource = typedArray.getResourceId(attr, R.drawable.ic_full_star_review)
-                R.styleable.CustomRatingBar_starOff -> mStarOffResource = typedArray.getResourceId(attr, R.drawable.ic_empty_star_review)
+                R.styleable.CustomRatingBar_starHalf -> mStarHalfResource =
+                    typedArray.getResourceId(attr, R.drawable.ic_half_star_review)
+                R.styleable.CustomRatingBar_starOn -> mStarOnResource =
+                    typedArray.getResourceId(attr, R.drawable.ic_full_star_review)
+                R.styleable.CustomRatingBar_starOff -> mStarOffResource =
+                    typedArray.getResourceId(attr, R.drawable.ic_empty_star_review)
                 R.styleable.CustomRatingBar_starPadding -> mStarPadding = typedArray.getDimension(attr, 0f)
                 R.styleable.CustomRatingBar_onlyForDisplay -> mOnlyForDisplay = typedArray.getBoolean(attr, false)
                 R.styleable.CustomRatingBar_halfStars -> isHalfStars = typedArray.getBoolean(attr, true)

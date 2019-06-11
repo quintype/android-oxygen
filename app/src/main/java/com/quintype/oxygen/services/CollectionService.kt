@@ -4,15 +4,17 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.os.Handler
 import android.os.Looper
-import com.quintype.oxygen.ErrorHandler
-import com.quintype.oxygen.OxygenConstants
+import com.quintype.oxygen.*
+import com.quintype.oxygen.OxygenConstants.Companion.STORY_LIMIT
+import com.quintype.oxygen.OxygenConstants.Companion.TRENDING_STORY_LIMIT
 import com.quintype.oxygen.models.BulkTableModel
 import com.quintype.oxygen.models.InnerCollectionItemModel
 import com.quintype.oxygen.models.collection.AssociatedMetadata
 import com.quintype.oxygen.models.collection.CollectionItem
 import com.quintype.oxygen.models.collection.CollectionResponse
+import com.quintype.oxygen.utils.widgets.logdExt
+import com.quintype.oxygen.utils.widgets.logeExt
 
-import com.vikatanapp.vikatan.utils.*
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -44,11 +46,17 @@ class CollectionService {
 //        }
         mObserver?.dispose()
         logdExt("First Iteration Collection Slug - " + collectionSlug + "  Limit - " + iCollectionLimit + " Offset - " + pageNumber * iCollectionLimit)
-        mObserver = mCollectionApiService.getCollectionApiService(collectionSlug, iCollectionLimit, pageNumber * iCollectionLimit, OxygenConstants.STORY_FIELDS)
+        mObserver = mCollectionApiService.getCollectionApiService(
+            collectionSlug,
+            iCollectionLimit,
+            pageNumber * iCollectionLimit,
+            OxygenConstants.STORY_FIELDS
+        )
             .concatMap { mCollectionResponse ->
                 logdExt("Collection Response home level :${mCollectionResponse.slug}, Items Size :${mCollectionResponse.items?.size}")
 
-                val isBundleCollection = COLLECTION_METADATA_TYPE_BUNDLE == mCollectionResponse.collectionMetadata.type?.get(0)?.name
+                val isBundleCollection =
+                    COLLECTION_METADATA_TYPE_BUNDLE == mCollectionResponse.collectionMetadata.type?.get(0)?.name
                 if (isBundleCollection) {
                     val associatedMetadata = AssociatedMetadata()
                     associatedMetadata.associatedMetadataLayout = COMPONENT_FIVE_STORY_1AD
@@ -141,10 +149,14 @@ class CollectionService {
                 logdExt("Start 2nd level collection api of :${mCollectionItem.slug}")
                 var PAGE_LIMIT_CHILD = iPageLimit
                 val noOfStoriesToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfStoriesToShow
-                val noOfSliderStoriesToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfSliderStoriesToShow
-                val noOfChildStoriesToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfChildStoriesToShow
-                val noOfStoriesInsideCollectionToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfStoriesInsideCollectionToShow
-                val noOfCollectionToShow = mCollectionItem.associatedMetadata?.associatedMetadataNumberOfCollectionsToShow
+                val noOfSliderStoriesToShow =
+                    mCollectionItem.associatedMetadata?.associatedMetadataNumberOfSliderStoriesToShow
+                val noOfChildStoriesToShow =
+                    mCollectionItem.associatedMetadata?.associatedMetadataNumberOfChildStoriesToShow
+                val noOfStoriesInsideCollectionToShow =
+                    mCollectionItem.associatedMetadata?.associatedMetadataNumberOfStoriesInsideCollectionToShow
+                val noOfCollectionToShow =
+                    mCollectionItem.associatedMetadata?.associatedMetadataNumberOfCollectionsToShow
 
                 /**
                  *  Check no_of_collection_to_show if size is greater than 0 then check for noOfStoriesInsideCollectionToShow,noOfStoriesToShow and noOfChildStoriesToShow
@@ -157,16 +169,17 @@ class CollectionService {
                         itemType = null
                     }
 
-                    PAGE_LIMIT_CHILD = if ((noOfSliderStoriesToShow != null && noOfSliderStoriesToShow > 0) && (noOfChildStoriesToShow != null && noOfChildStoriesToShow > 0))
-                        noOfSliderStoriesToShow.plus(noOfChildStoriesToShow).plus(noOfCollectionToShow)
+                    PAGE_LIMIT_CHILD =
+                        if ((noOfSliderStoriesToShow != null && noOfSliderStoriesToShow > 0) && (noOfChildStoriesToShow != null && noOfChildStoriesToShow > 0))
+                            noOfSliderStoriesToShow.plus(noOfChildStoriesToShow).plus(noOfCollectionToShow)
 
 //                    else if (noOfStoriesInsideCollectionToShow != null && noOfStoriesInsideCollectionToShow > 0) {
 //                        PAGE_LIMIT_CHILD = noOfStoriesInsideCollectionToShow.plus(noOfCollectionToShow)
 //                    }
-                    else if (noOfStoriesToShow != null && noOfStoriesToShow > 0)
-                        noOfCollectionToShow.plus(noOfStoriesToShow)
-                    else
-                        noOfCollectionToShow
+                        else if (noOfStoriesToShow != null && noOfStoriesToShow > 0)
+                            noOfCollectionToShow.plus(noOfStoriesToShow)
+                        else
+                            noOfCollectionToShow
                 } else if (noOfStoriesToShow != null && noOfStoriesToShow > 0) {
                     itemType = OxygenConstants.TYPE_STORY
                     PAGE_LIMIT_CHILD = noOfStoriesToShow
@@ -228,7 +241,9 @@ class CollectionService {
                                  *      if type is OxygenConstants.KEY_TRENDING then make one more API call to get collection
                                  *      else return the response
                                  */
-                                if (getInnerCollection || (collectionMetadataType != null && collectionMetadataType.isNotEmpty() && collectionItem.metadata?.type?.get(0)?.key.equals(
+                                if (getInnerCollection || (collectionMetadataType != null && collectionMetadataType.isNotEmpty() && collectionItem.metadata?.type?.get(
+                                        0
+                                    )?.key.equals(
                                         OxygenConstants.KEY_TRENDING
                                     ))
                                 ) {
@@ -239,7 +254,11 @@ class CollectionService {
                                         if (noOfStoriesInsideCollectionToShow == 0)
                                             noOfStoriesInsideCollectionToShow = TRENDING_STORY_LIMIT
 
-                                        getChildRxResponse(collectionItem.slug as String, noOfStoriesInsideCollectionToShow, bulkTableModel)
+                                        getChildRxResponse(
+                                            collectionItem.slug as String,
+                                            noOfStoriesInsideCollectionToShow,
+                                            bulkTableModel
+                                        )
                                     }
                                 }
                             }
@@ -317,7 +336,12 @@ class CollectionService {
             })
     }
 
-    fun getOnlyStories(collectionSlugorID: String, storyLimit: Int, offset: Int, storyFields: String): CollectionResponse? {
+    fun getOnlyStories(
+        collectionSlugorID: String,
+        storyLimit: Int,
+        offset: Int,
+        storyFields: String
+    ): CollectionResponse? {
         val collectionApiService: CollectionApiService =
             RetrofitApiClient.getRetrofitApiClient().create(CollectionApiService::class.java)
         var mCollectionResponse: CollectionResponse? = null

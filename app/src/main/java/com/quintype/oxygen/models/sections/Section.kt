@@ -11,11 +11,11 @@ import com.google.gson.annotations.SerializedName
 open class Section : Parcelable {
 
     @SerializedName("name")
-    var name: String?=null
+    var name: String? = null
     @SerializedName("id")
-    var id: String?=null
+    var id: String? = null
     @SerializedName("display-name")
-    var displayName: String?=null
+    var displayName: String? = null
 
     override fun toString(): String {
         return "Section{" +

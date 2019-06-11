@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import com.vikatanapp.R;
+import com.quintype.oxygen.R;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -1019,7 +1019,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
     public void setPanelState(PanelState state) {
 
         // Abort any running animation, to allow state change
-        if(mDragHelper.getViewDragState() == ViewDragHelper.STATE_SETTLING){
+        if (mDragHelper.getViewDragState() == ViewDragHelper.STATE_SETTLING) {
             Log.d(TAG, "View is settling. Aborting animation.");
             mDragHelper.abort();
         }

@@ -14,6 +14,9 @@ class OxygenConstants {
         const val COLLECTION_HOME: String = "home"
         const val TYPE_COLLECTION: String = "collection"
         const val PAGE_LIMIT_CHILD: Int = 5
+        const val STORY_LIMIT: Int = 20
+        const val TRENDING_STORY_LIMIT: Int = 5
+
         const val TYPE_STORY: String = "story"
         const val TYPE_BREAKING_NEWS: String = "breaking-news"
         const val WIDGET_TEMPLATE: String = "widget"
@@ -70,3 +73,38 @@ const val MOBILE_MENU = "mobile-menu"
 const val STORY_ID = "STORY_ID"
 const val X_VIKATAN_AUTH = "x-vikatan-auth"
 const val COLLECTION_ID = "COLLECTION_ID"
+const val BREAKING_NEWS_SLUG: String = "breaking-news"
+const val COLLECTION_METADATA_TYPE_BUNDLE: String = "bundle"
+
+/**
+ * Viewholder types
+ */
+const val TYPE_INVALID_TYPE = 0
+
+/**
+ * Screen width percentage
+ */
+const val WIDTH_PERCENTAGE_30: Double = 0.30
+const val WIDTH_PERCENTAGE_75: Double = 0.75
+const val WIDTH_PERCENTAGE_80: Double = 0.80
+const val WIDTH_PERCENTAGE_95: Double = 0.95
+const val WIDTH_PERCENTAGE_100: Double = 1.00
+
+/**
+ * constants for layout names
+ */
+const val COMPONENT_FIVE_STORY_1AD = "five-story-one-ad"
+const val COMPONENT_16S_4C = "sixteen-story-4c"
+const val COMPONENT_4S_2C4S_1AD_1WIDGET = "4S-2C4S-1Ad-1Widget"
+const val COMPONENT_2C_4S = "two-collection-four-story"
+
+/**
+ *  deciding wither we need innerCollection to show stories inside component
+ *  Need to add layout name inside this method if we need to make inner collection API call
+ */
+fun isInnerCollectionRequired(layoutName: String?): Boolean {
+    return when (layoutName) {
+        COMPONENT_16S_4C, COMPONENT_4S_2C4S_1AD_1WIDGET, COMPONENT_2C_4S -> true
+        else -> false
+    }
+}

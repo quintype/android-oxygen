@@ -3,9 +3,9 @@ package com.quintype.oxygen.services
 import com.quintype.oxygen.COLLECTION_ID
 import com.quintype.oxygen.STORY_ID
 import com.quintype.oxygen.X_VIKATAN_AUTH
+import com.quintype.oxygen.models.StoryPayWallPingBackRequest
 import com.quintype.oxygen.models.UserAccessModel
 import com.quintype.oxygen.models.UserJWTModel
-import com.vikatanapp.vikatan.ui.main.models.StoryPayWallPingBackRequest
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*

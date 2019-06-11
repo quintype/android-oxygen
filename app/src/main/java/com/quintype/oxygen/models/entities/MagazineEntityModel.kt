@@ -68,6 +68,7 @@ class MagazineEntityModel(parcel: Parcel) : Parcelable {
         val CREATOR: Parcelable.Creator<MagazineEntityModel> = object : Parcelable.Creator<MagazineEntityModel> {
             override fun createFromParcel(source: Parcel): MagazineEntityModel =
                 MagazineEntityModel(source)
+
             override fun newArray(size: Int): Array<MagazineEntityModel?> = arrayOfNulls(size)
         }
     }

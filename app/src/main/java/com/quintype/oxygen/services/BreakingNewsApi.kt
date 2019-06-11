@@ -1,8 +1,8 @@
 package com.quintype.oxygen.services
 
+import com.quintype.oxygen.BREAKING_NEWS_SLUG
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.models.collection.CollectionResponse
-import com.vikatanapp.vikatan.utils.BREAKING_NEWS_SLUG
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers

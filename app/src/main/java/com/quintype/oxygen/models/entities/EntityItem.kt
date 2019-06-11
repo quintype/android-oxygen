@@ -33,7 +33,7 @@ class EntityItem() : Parcelable {
 
     @SerializedName("collection-date")
     @Expose
-    var collectionDate: String?=null
+    var collectionDate: String? = null
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readString().toInt()

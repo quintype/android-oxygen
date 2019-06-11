@@ -1,7 +1,6 @@
 package com.quintype.oxygen.services
 
-import com.vikatanapp.vikatan.services.LoginService
-import com.vikatanapp.vikatan.ui.main.models.StoryPayWallPingBackRequest
+import com.quintype.oxygen.models.StoryPayWallPingBackRequest
 import io.reactivex.disposables.CompositeDisposable
 
 class UserAccessService {
@@ -22,12 +21,14 @@ class UserAccessService {
     /**
      * function to get user story access based on the Vuid
      */
-    fun getUserStoryAccess(mUserVuid: String?, mStoryId: String) = mUserAccessServiceApi.getUserStoryAccessInfo(mUserVuid, mStoryId)
+    fun getUserStoryAccess(mUserVuid: String?, mStoryId: String) =
+        mUserAccessServiceApi.getUserStoryAccessInfo(mUserVuid, mStoryId)
 
     /**
      * function to post the read premium story ID's as Array, based ov user Vuid
      */
-    fun postReadStoryIdArray(mUserVuid: String?, storyIds: StoryPayWallPingBackRequest) = mUserAccessServiceApi.postReadStoryIdArray(mUserVuid, storyIds)
+    fun postReadStoryIdArray(mUserVuid: String?, storyIds: StoryPayWallPingBackRequest) =
+        mUserAccessServiceApi.postReadStoryIdArray(mUserVuid, storyIds)
 
     /**
      * function to post the read premium story ID, based ov user Vuid
@@ -37,7 +38,8 @@ class UserAccessService {
     /**
      * function to get user collection access based on the Vuid
      */
-    fun getUserCollectionAccess(mUserVuid: String?, mCollectionId: String) = mUserAccessServiceApi.getUserCollectionAccessInfo(mUserVuid, mCollectionId)
+    fun getUserCollectionAccess(mUserVuid: String?, mCollectionId: String) =
+        mUserAccessServiceApi.getUserCollectionAccessInfo(mUserVuid, mCollectionId)
 
     /**
      * API for getting JWT key for meType

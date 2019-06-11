@@ -7,7 +7,7 @@ import com.quintype.oxygen.ErrorHandler
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.TYPE_MAGAZINE
 import com.quintype.oxygen.models.collection.MagazineResponse
-import com.vikatanapp.vikatan.utils.logdExt
+import com.quintype.oxygen.utils.widgets.logdExt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -16,7 +16,12 @@ class MagazineService {
     private var mCollectionResponse = MutableLiveData<MagazineResponse>()
 
     @SuppressLint("CheckResult")
-    fun getMagazinePreviewResponse(errorHandler: ErrorHandler, entityId: String, afterDateMillis: String, beforeDateMillis: String): LiveData<MagazineResponse> {
+    fun getMagazinePreviewResponse(
+        errorHandler: ErrorHandler,
+        entityId: String,
+        afterDateMillis: String,
+        beforeDateMillis: String
+    ): LiveData<MagazineResponse> {
 
         val magazineService: MagazineServices =
             RetrofitApiClient.getRetrofitApiClient().create(MagazineServices::class.java)
