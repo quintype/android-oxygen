@@ -44,10 +44,10 @@ class NavMenuData : Parcelable {
 
     constructor()
 
-    protected constructor(`in`: Parcel) {
-        this.colorHex = `in`.readString()
-        this.url = `in`.readString()
-        this.iconCode = `in`.readString()
+    protected constructor(parcel: Parcel) {
+        this.colorHex = parcel.readString()
+        this.url = parcel.readString()
+        this.iconCode = parcel.readString()
     }
 
     companion object CREATOR : Parcelable.Creator<NavMenuData> {

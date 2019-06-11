@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.util.Base64;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.nio.charset.StandardCharsets;
@@ -15,8 +14,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.apache.commons.io.Charsets.UTF_8;
-
+import static kotlin.text.Charsets.UTF_8;
 
 /**
  * Encapsulates story element present inside a {@linkplain Card}
