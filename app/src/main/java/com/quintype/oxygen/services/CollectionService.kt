@@ -14,7 +14,6 @@ import com.quintype.oxygen.models.collection.CollectionItem
 import com.quintype.oxygen.models.collection.CollectionResponse
 import com.quintype.oxygen.utils.widgets.logdExt
 import com.quintype.oxygen.utils.widgets.logeExt
-
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -341,28 +340,17 @@ class CollectionService {
         storyLimit: Int,
         offset: Int,
         storyFields: String
-    ): CollectionResponse? {
+    ): Flowable<CollectionResponse> {
         val collectionApiService: CollectionApiService =
             RetrofitApiClient.getRetrofitApiClient().create(CollectionApiService::class.java)
-        var mCollectionResponse: CollectionResponse? = null
 
-        val subscribeWith = collectionApiService.getCollectionOnlyStoriesApiService(
+        return collectionApiService.getCollectionOnlyStoriesApiService(
             collectionSlugorID,
             storyLimit,
             offset,
             OxygenConstants.TYPE_STORY,
             storyFields
-        ).subscribeWith(object : ResourceSubscriber<CollectionResponse>() {
-            override fun onComplete() {
-            }
-
-            override fun onNext(mCollectionsModel: CollectionResponse) {
-                mCollectionResponse = mCollectionsModel
-            }
-
-            override fun onError(e: Throwable) {
-            }
-        })
-        return mCollectionResponse
+        ).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }
