@@ -160,10 +160,6 @@ public class Story implements Parcelable {
     public Map<String, EntityModel> expandedEntitiesMap;
     @SerializedName("id")
     public String id;
-    @SerializedName("linked-story")
-    public LinkedStory linkedStory;
-    @SerializedName("linked-story-slug")
-    public String linkedStorySlug;
 
     public int mMagazinePageNumber = 1;//just for the magazine stories
 
@@ -241,8 +237,7 @@ public class Story implements Parcelable {
         this.storyMetaData = in.readParcelable(StoryMetaData.class.getClassLoader());
         this.authors = in.createTypedArrayList(Author.CREATOR);
         this.alternative = in.readParcelable(Alternative.class.getClassLoader());
-        this.linkedStory = in.readParcelable(LinkedStory.class.getClassLoader());
-        this.linkedStorySlug = in.readString();
+
         if (in.readByte() != 0) {
             this.linkedEntities = (JsonArray) new JsonParser().parse(in.readString());
         }
@@ -1031,8 +1026,6 @@ public class Story implements Parcelable {
         }
         dest.writeStringList(this.associatedSeriesCollectionIDs);
         dest.writeTypedList(this.contributors);
-        dest.writeParcelable(this.linkedStory, 0);
-        dest.writeString(this.linkedStorySlug);
     }
 
     public Alternative alternative() {

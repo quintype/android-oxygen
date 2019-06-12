@@ -29,6 +29,10 @@ class StoryMetaData protected constructor(parcel: Parcel) : Parcelable {
     var referenceUrl: String? = null
     @SerializedName("sponsored-by")
     var sponsoredBy: String? = null
+    @SerializedName("linked-story")
+    var linkedStory: LinkedStory? = null
+    @SerializedName("linked-story-slug")
+    var linkedStorySlug: String? = null
 
     override fun toString(): String {
         return "StoryMetaData{" +
@@ -53,6 +57,8 @@ class StoryMetaData protected constructor(parcel: Parcel) : Parcelable {
             dest.writeString(this.storyAttributes!!.toString())
         dest.writeString(this.referenceUrl)
         dest.writeString(this.sponsoredBy)
+        dest.writeParcelable(this.linkedStory, 0)
+        dest.writeString(this.linkedStorySlug)
     }
 
     init {
@@ -64,6 +70,8 @@ class StoryMetaData protected constructor(parcel: Parcel) : Parcelable {
         }
         this.referenceUrl = parcel.readString()
         this.sponsoredBy = parcel.readString()
+        this.linkedStory = parcel.readParcelable(LinkedStory::class.java.classLoader)
+        this.linkedStorySlug = parcel.readString()
     }
 
     companion object CREATOR : Parcelable.Creator<StoryMetaData> {
