@@ -2,7 +2,7 @@ package com.quintype.oxygen.services
 
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.models.TagListResponse
-import com.quintype.oxygen.models.search.SearchStoryList
+import com.quintype.oxygen.models.search.AdvancedSearchStorieResults
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -24,12 +24,12 @@ interface StoriesListApiService {
     ): Flowable<TagListResponse>
 
     @Headers(OxygenConstants.CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF_8)
-    @GET("api/v1/search")
+    @GET("api/v1/advanced-search")
     fun getSearchStoriesList(
-        @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_TERM) tagName: String,
+        @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_TERM) searchTerm: String,
         @Query(OxygenConstants.QUERY_PARAM_KEY_LIMIT) limit: Int,
-        @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_FIELDS) storyFields: String,
-        @Query(OxygenConstants.QUERY_PARAM_KEY_OFFSET) offset: Int
-    ): Flowable<SearchStoryList>
+        @Query(OxygenConstants.QUERY_PARAM_KEY_OFFSET) offset: Int,
+        @Query(OxygenConstants.QUERY_PARAM_KEY_CONTENT_TYPE) storyFields: String
+    ): Flowable<AdvancedSearchStorieResults>
 
 }

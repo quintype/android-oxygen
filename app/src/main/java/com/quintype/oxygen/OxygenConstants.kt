@@ -50,6 +50,7 @@ class OxygenConstants {
         const val MAGAZINE_ID = "MAGAZINE_ID"
         const val QUERY_PARAM_COLLECTION_DATE_AFTER = "collection-date-after"
         const val QUERY_PARAM_COLLECTION_DATE_BEFORE = "collection-date-before"
+        const val QUERY_PARAM_KEY_CONTENT_TYPE="content-types"
 
         /**
          * for storyElementSubTypeMetadata
