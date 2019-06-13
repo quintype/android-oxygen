@@ -1,5 +1,8 @@
 package com.quintype.oxygen
 
+import android.content.Context
+import android.provider.Settings
+
 /**
  * Created TemplateCollectionWithRx by rakshith on 7/23/18.
  */
@@ -109,3 +112,5 @@ fun isInnerCollectionRequired(layoutName: String?): Boolean {
         else -> false
     }
 }
+const val QUERY_PARAM_KEY_PLATFORM = "platform"
+const val QUERY_PARAM_KEY_DEVICE_ID = "deviceid"

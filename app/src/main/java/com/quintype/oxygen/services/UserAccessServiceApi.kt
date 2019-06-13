@@ -1,8 +1,6 @@
 package com.quintype.oxygen.services
 
-import com.quintype.oxygen.COLLECTION_ID
-import com.quintype.oxygen.STORY_ID
-import com.quintype.oxygen.X_VIKATAN_AUTH
+import com.quintype.oxygen.*
 import com.quintype.oxygen.models.StoryPayWallPingBackRequest
 import com.quintype.oxygen.models.UserAccessModel
 import com.quintype.oxygen.models.UserJWTModel
@@ -17,7 +15,9 @@ interface UserAccessServiceApi {
     @GET("/api/vikatan/v1/stories/{" + STORY_ID + "}/access")
     fun getUserStoryAccessInfo(
         @Header(X_VIKATAN_AUTH) headerToken: String?,
-        @Path(STORY_ID) mStoryId: String
+        @Path(STORY_ID) mStoryId: String,
+        @Query(QUERY_PARAM_KEY_PLATFORM) platform: String,
+        @Query(QUERY_PARAM_KEY_DEVICE_ID) deviceId: String
     ): Single<UserAccessModel>
 
     /**
@@ -26,7 +26,9 @@ interface UserAccessServiceApi {
     @POST("api/vikatan/v1/stories/pingback")
     fun postReadStoryIdArray(
         @Header(X_VIKATAN_AUTH) headerToken: String?,
-        @Body storyIds: StoryPayWallPingBackRequest
+        @Body storyIds: StoryPayWallPingBackRequest,
+        @Query(QUERY_PARAM_KEY_PLATFORM) platform: String,
+        @Query(QUERY_PARAM_KEY_DEVICE_ID) deviceId: String
     ): Completable
 
     /**
@@ -35,7 +37,9 @@ interface UserAccessServiceApi {
     @POST("/api/vikatan/v1/stories/{" + STORY_ID + "}/pingback")
     fun postReadStoryId(
         @Header(X_VIKATAN_AUTH) headerToken: String?,
-        @Path(STORY_ID) mStoryId: String
+        @Path(STORY_ID) mStoryId: String,
+        @Query(QUERY_PARAM_KEY_PLATFORM) platform: String,
+        @Query(QUERY_PARAM_KEY_DEVICE_ID) deviceId: String
     ): Completable
 
     /**
@@ -44,7 +48,9 @@ interface UserAccessServiceApi {
     @GET("/api/vikatan/v1/collections/{" + COLLECTION_ID + "}/access")
     fun getUserCollectionAccessInfo(
         @Header(X_VIKATAN_AUTH) headerToken: String?,
-        @Path(COLLECTION_ID) mCollectionId: String
+        @Path(COLLECTION_ID) mCollectionId: String,
+        @Query(QUERY_PARAM_KEY_PLATFORM) platform: String,
+        @Query(QUERY_PARAM_KEY_DEVICE_ID) deviceId: String
     ): Single<UserAccessModel>
 
     /**
