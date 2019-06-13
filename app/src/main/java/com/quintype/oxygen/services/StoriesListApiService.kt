@@ -29,7 +29,8 @@ interface StoriesListApiService {
         @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_TERM) searchTerm: String,
         @Query(OxygenConstants.QUERY_PARAM_KEY_LIMIT) limit: Int,
         @Query(OxygenConstants.QUERY_PARAM_KEY_OFFSET) offset: Int,
-        @Query(OxygenConstants.QUERY_PARAM_KEY_CONTENT_TYPE) storyFields: String
+        @Query(OxygenConstants.QUERY_PARAM_KEY_CONTENT_TYPE) contentType: String,
+        @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_FIELDS) storyFields: String
     ): Flowable<AdvancedSearchStorieResults>
 
 }

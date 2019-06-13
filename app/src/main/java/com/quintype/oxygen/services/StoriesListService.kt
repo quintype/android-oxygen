@@ -33,6 +33,7 @@ class StoriesListService {
             searchTerm,
             iPageLimit,
             pageNumber * iPageLimit,
-            OxygenConstants.TYPE_STORY
+            OxygenConstants.TYPE_STORY,
+            OxygenConstants.SEARCH_STORY_FIELDS
         )
 }
