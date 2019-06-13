@@ -8,8 +8,8 @@ class StoriesListService {
         private var storiesListService = StoriesListService()
         var storiesListApiService: StoriesListApiService = RetrofitApiClient.getRetrofitApiClient()
             .create(
-            StoriesListApiService::class.java
-        )
+                StoriesListApiService::class.java
+            )
         var mCompositeDisposable: CompositeDisposable? = null
 
         @Synchronized
@@ -32,7 +32,8 @@ class StoriesListService {
         storiesListApiService.getSearchStoriesList(
             searchTerm,
             iPageLimit,
-            OxygenConstants.SEARCH_STORY_FIELDS,
-            pageNumber * iPageLimit
+            pageNumber * iPageLimit,
+            OxygenConstants.TYPE_STORY,
+            OxygenConstants.SEARCH_STORY_FIELDS
         )
 }

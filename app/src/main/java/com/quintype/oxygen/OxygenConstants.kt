@@ -1,5 +1,8 @@
 package com.quintype.oxygen
 
+import android.content.Context
+import android.provider.Settings
+
 /**
  * Created TemplateCollectionWithRx by rakshith on 7/23/18.
  */
@@ -50,6 +53,7 @@ class OxygenConstants {
         const val MAGAZINE_ID = "MAGAZINE_ID"
         const val QUERY_PARAM_COLLECTION_DATE_AFTER = "collection-date-after"
         const val QUERY_PARAM_COLLECTION_DATE_BEFORE = "collection-date-before"
+        const val QUERY_PARAM_KEY_CONTENT_TYPE="content-types"
 
         /**
          * for storyElementSubTypeMetadata
@@ -108,3 +112,5 @@ fun isInnerCollectionRequired(layoutName: String?): Boolean {
         else -> false
     }
 }
+const val QUERY_PARAM_KEY_PLATFORM = "platform"
+const val QUERY_PARAM_KEY_DEVICE_ID = "deviceid"
