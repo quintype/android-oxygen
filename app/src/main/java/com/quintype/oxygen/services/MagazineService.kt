@@ -6,15 +6,15 @@ import android.arch.lifecycle.MutableLiveData
 import com.quintype.oxygen.ErrorHandler
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.TYPE_MAGAZINE
+import com.quintype.oxygen.models.collection.CollectionResponse
 import com.quintype.oxygen.models.collection.MagazineResponse
 import com.quintype.oxygen.utils.widgets.logdExt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MagazineService {
-
     private var mCollectionResponse = MutableLiveData<MagazineResponse>()
-
+    private var mEntityReponse = MutableLiveData<CollectionResponse>()
     @SuppressLint("CheckResult")
     fun getMagazinePreviewResponse(
         errorHandler: ErrorHandler,
@@ -22,10 +22,8 @@ class MagazineService {
         afterDateMillis: String,
         beforeDateMillis: String
     ): LiveData<MagazineResponse> {
-
         val magazineService: MagazineServices =
             RetrofitApiClient.getRetrofitApiClient().create(MagazineServices::class.java)
-
         logdExt("first Iteration for magazine Collection Slug - $entityId")
         magazineService.getMagazineEntity(entityId, afterDateMillis.toLong(), beforeDateMillis.toLong())
             .flatMap<MagazineResponse> {
@@ -39,7 +37,6 @@ class MagazineService {
                     OxygenConstants.TYPE_STORY,
                     OxygenConstants.MAGAZINE_STORY_FIELDS
                 )
-
             }
             .subscribeOn(Schedulers.io())
             .retry(3)
@@ -81,5 +78,31 @@ class MagazineService {
             })
 
         return mCollectionResponse
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getMagazineArchiveList(
+        errorHandler: ErrorHandler,
+        entityId: String,
+        afterDateMillis: String,
+        beforeDateMillis: String
+    ): LiveData<CollectionResponse> {
+
+        val magazineService: MagazineServices =
+            RetrofitApiClient.getRetrofitApiClient().create(MagazineServices::class.java)
+
+        magazineService.getMagazineEntity(entityId, afterDateMillis.toLong(), beforeDateMillis.toLong())
+            .subscribeOn(Schedulers.io())
+            .retry(3)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ mMagazineResponse ->
+                mEntityReponse.value = mMagazineResponse
+                errorHandler.onAPISuccess()
+            }, {
+                logdExt(it.localizedMessage)
+                errorHandler.onAPIFailure()
+            })
+        return mEntityReponse
     }
 }
