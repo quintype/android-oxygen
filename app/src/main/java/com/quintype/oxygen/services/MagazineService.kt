@@ -1,4 +1,4 @@
-package com.quintype.oxygen.services
+package com.vikatanapp.vikatan.services
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.LiveData
@@ -8,6 +8,8 @@ import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.TYPE_MAGAZINE
 import com.quintype.oxygen.models.collection.CollectionResponse
 import com.quintype.oxygen.models.collection.MagazineResponse
+import com.quintype.oxygen.services.MagazineServices
+import com.quintype.oxygen.services.RetrofitApiClient
 import com.quintype.oxygen.utils.widgets.logdExt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -92,6 +94,7 @@ class MagazineService {
         val magazineService: MagazineServices =
             RetrofitApiClient.getRetrofitApiClient().create(MagazineServices::class.java)
 
+        logdExt("first Iteration for magazine Collection Slug - $entityId")
         magazineService.getMagazineEntity(entityId, afterDateMillis.toLong(), beforeDateMillis.toLong())
             .subscribeOn(Schedulers.io())
             .retry(3)
@@ -105,4 +108,5 @@ class MagazineService {
             })
         return mEntityReponse
     }
+
 }
