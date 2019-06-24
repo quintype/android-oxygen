@@ -34,7 +34,7 @@ interface MagazineServices {
     ): Flowable<CollectionResponse>
 
     @Headers(OxygenConstants.CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF_8)
-    @GET("/api/v1/entity/{$MAGAZINE_ID}/collections?")
+    @GET("/api/v1/entity/{$MAGAZINE_ID}/collections?sort-by=collection-date&order=desc")
     fun getMagazineEntity(
         @Path(MAGAZINE_ID) entityId: String,
         @Query(OxygenConstants.QUERY_PARAM_COLLECTION_DATE_AFTER) dateAfter: Long,
