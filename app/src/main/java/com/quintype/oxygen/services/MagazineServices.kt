@@ -2,10 +2,13 @@ package com.quintype.oxygen.services
 
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.OxygenConstants.Companion.MAGAZINE_ID
+import com.quintype.oxygen.QUERY_PARAM_EXTERNAL_IDS
 import com.quintype.oxygen.models.collection.CollectionResponse
 import com.quintype.oxygen.models.entities.EntityInfoFromConfig
 import com.quintype.oxygen.models.entities.MagazineResponse
+import com.quintype.oxygen.models.mapping.BookmarkMappingModel
 import io.reactivex.Flowable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -50,4 +53,13 @@ interface MagazineServices {
         @Query(OxygenConstants.QUERY_PARAM_KEY_FIELDS) storyFields: String
     ): Flowable<com.quintype.oxygen.models.collection.MagazineResponse>
 
+
+    /**
+     * API for getting external id to bookmark mapping
+     */
+    @GET("/mobile-data/stories-by-external-ids")
+    fun getStoryByExternalId(
+        @Query(QUERY_PARAM_EXTERNAL_IDS) externalIds: String,
+        @Query(OxygenConstants.QUERY_PARAM_KEY_SEARCH_FIELDS) mExternalStoryFields: String
+    ): Single<BookmarkMappingModel>
 }
