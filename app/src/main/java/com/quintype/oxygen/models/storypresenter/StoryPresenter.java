@@ -90,7 +90,12 @@ public class StoryPresenter implements Parcelable {
      */
     StoryPresenter(Story story, boolean newestFirst) {
         this.story = story;
-        Map<String, EntityModel> parsedEntityMap = story.parsedEntityList();
+        Map<String, EntityModel> parsedEntityMap = null;
+        try {
+            parsedEntityMap = story.parsedEntityList();
+        } catch (Exception e) {
+
+        }
         int[] positionArray = new int[story.cards().size()];
         int counter = 0;
 
@@ -174,7 +179,12 @@ public class StoryPresenter implements Parcelable {
      */
     StoryPresenter(Story story, String storyType) {
         this.story = story;
-        Map<String, EntityModel> parsedEntityMap = story.parsedEntityList();
+        Map<String, EntityModel> parsedEntityMap = null;
+        try {
+            parsedEntityMap = story.parsedEntityList();
+        } catch (Exception e) {
+
+        }
         int[] positionArray = new int[story.cards().size()];
         int counter = 0;
 
