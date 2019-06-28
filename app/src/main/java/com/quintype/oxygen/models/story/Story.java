@@ -22,7 +22,7 @@ public class Story implements Parcelable {
             "id", "hero-image-s3-key", "sections", "headline", "subheadline",
             "author-name", "created-at", "hero-image-caption",
             "story-content-id", "tags", "hero-image-metadata", "story-template", "slug",
-            "summary", "last-published-at", "metadata", "alternative", "access"
+            "summary", "last-published-at", "metadata", "alternative", "access", "url"
     };
 
     public static final String INVALID_ID = "-1";
@@ -110,6 +110,8 @@ public class Story implements Parcelable {
     public String heroImageS3Key;
     @SerializedName("cards")
     public List<Card> cards = Collections.emptyList();
+    @SerializedName("url")
+    public String storyUrl;
     @SerializedName("story-version-id")
     public String storyVersionId;
 
@@ -221,6 +223,7 @@ public class Story implements Parcelable {
         this.heroImageS3Key = in.readString();
         this.cards = in.createTypedArrayList(Card.CREATOR);
         this.storyVersionId = in.readString();
+        this.storyUrl = in.readString();
         this.authorName = in.readString();
         this.authorId = in.readString();
         this.ownerId = in.readString();
@@ -379,6 +382,7 @@ public class Story implements Parcelable {
                 ", subHeadLine='" + subHeadLine + '\'' +
                 ", storyContentId='" + storyContentId + '\'' +
                 ", slug='" + slug + '\'' +
+                ", storyUrl='" + storyUrl + '\'' +
                 ", linkedStories='" + linkedStories + '\'' +
                 ", lastPublishedAt=" + lastPublishedAt +
                 ", sections=" + sections +
@@ -478,6 +482,13 @@ public class Story implements Parcelable {
      */
     public String slug() {
         return slug;
+    }
+
+    /**
+     * @return String storyUrl
+     */
+    public String storyUrl() {
+        return storyUrl;
     }
 
     public String getLinkedStorySlug(String storyId) {
@@ -986,6 +997,7 @@ public class Story implements Parcelable {
         dest.writeString(this.subHeadLine);
         dest.writeString(this.storyContentId);
         dest.writeString(this.slug);
+        dest.writeString(this.storyUrl);
         dest.writeMap(this.linkedStories);
         dest.writeLong(this.lastPublishedAt);
         dest.writeTypedList(this.sections);
