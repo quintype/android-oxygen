@@ -24,7 +24,7 @@ class OxygenConstants {
         const val KEY_TRENDING: String = "trending"
         const val KEY_WIDGET: String = "widget"
         const val STORY_FIELDS: String =
-            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access"
+            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access,url"
         const val MAGAZINE_STORY_FIELDS: String =
             "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,cards,tags,subheadline,access-level-values,access"
         const val SEARCH_STORY_FIELDS =
