@@ -222,8 +222,8 @@ public class Story implements Parcelable {
         this.status = in.readString();
         this.heroImageS3Key = in.readString();
         this.cards = in.createTypedArrayList(Card.CREATOR);
-        this.storyVersionId = in.readString();
         this.storyUrl = in.readString();
+        this.storyVersionId = in.readString();
         this.authorName = in.readString();
         this.authorId = in.readString();
         this.ownerId = in.readString();
@@ -382,7 +382,6 @@ public class Story implements Parcelable {
                 ", subHeadLine='" + subHeadLine + '\'' +
                 ", storyContentId='" + storyContentId + '\'' +
                 ", slug='" + slug + '\'' +
-                ", storyUrl='" + storyUrl + '\'' +
                 ", linkedStories='" + linkedStories + '\'' +
                 ", lastPublishedAt=" + lastPublishedAt +
                 ", sections=" + sections +
@@ -399,6 +398,7 @@ public class Story implements Parcelable {
                 ", status='" + status + '\'' +
                 ", heroImageS3Key='" + heroImageS3Key + '\'' +
                 ", cards=" + cards +
+                ", storyUrl='" + storyUrl + '\'' +
                 ", storyVersionId='" + storyVersionId + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", authorId='" + authorId + '\'' +
@@ -997,7 +997,6 @@ public class Story implements Parcelable {
         dest.writeString(this.subHeadLine);
         dest.writeString(this.storyContentId);
         dest.writeString(this.slug);
-        dest.writeString(this.storyUrl);
         dest.writeMap(this.linkedStories);
         dest.writeLong(this.lastPublishedAt);
         dest.writeTypedList(this.sections);
@@ -1015,6 +1014,7 @@ public class Story implements Parcelable {
         dest.writeString(this.status);
         dest.writeString(this.heroImageS3Key);
         dest.writeTypedList(this.cards);
+        dest.writeString(this.storyUrl);
         dest.writeString(this.storyVersionId);
         dest.writeString(this.authorName);
         dest.writeString(this.authorId);
