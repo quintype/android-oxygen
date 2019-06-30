@@ -5,13 +5,14 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.story.Story
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class StoryCollectionById protected constructor(parcel: Parcel) : Parcelable {
+class StoryCollectionById protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("updated-at")
     @Expose

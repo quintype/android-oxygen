@@ -7,6 +7,7 @@ import com.quintype.oxygen.models.entities.EntitiesMetaData
 import com.quintype.oxygen.models.sections.Section
 import com.quintype.oxygen.models.story.Tag
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -49,4 +50,4 @@ data class Metadata(
     @SerializedName("pdf-src-key")
     @Expose
     var pdfSrcKey: PdfSourceKey
-) : Parcelable
+) : Parcelable, Serializable

@@ -3,11 +3,12 @@ package com.quintype.oxygen.models.collection
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
-class CollectionMeta protected constructor(`in`: Parcel) : Parcelable {
+class CollectionMeta protected constructor(`in`: Parcel) : Parcelable, Serializable {
 
     @SerializedName("id")
     var id: String? = null

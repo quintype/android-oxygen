@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
@@ -91,7 +92,7 @@ data class AssociatedMetadata(
     @SerializedName("pagenumber")
     @Expose
     var associatedMetadataMagazineStoryPageNumber: List<Int>? = null
-) : Parcelable
+) : Parcelable, Serializable
 //
 //constructor(parcel: Parcel) : this() {
 //    associatedMetadataLayout = parcel.readString()

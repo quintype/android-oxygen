@@ -3,8 +3,9 @@ package com.quintype.oxygen.models.entities
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class EntitiesMetaData(source: Parcel) : Parcelable {
+class EntitiesMetaData(source: Parcel) : Parcelable, Serializable {
     @SerializedName("collectionEntities")
     var collectionEntities: CollectionEntities? = null
 

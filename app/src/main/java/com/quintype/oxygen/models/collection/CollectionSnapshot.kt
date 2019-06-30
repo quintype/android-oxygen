@@ -4,12 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class CollectionSnapshot protected constructor(parcel: Parcel) : Parcelable {
+class CollectionSnapshot protected constructor(parcel: Parcel) : Parcelable, Serializable {
     @SerializedName("body")
     @Expose
     private var snapshotBody: String? = null
