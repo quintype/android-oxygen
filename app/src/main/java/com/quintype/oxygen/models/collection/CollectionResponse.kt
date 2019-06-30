@@ -5,12 +5,13 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.entities.EntityItem
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class CollectionResponse(parcel: Parcel) : Parcelable {
+class CollectionResponse(parcel: Parcel) : Parcelable, Serializable {
     override fun describeContents(): Int {
         return 0
     }

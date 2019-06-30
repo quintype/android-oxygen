@@ -5,12 +5,13 @@ import android.os.Parcelable
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class StoryMetaData protected constructor(parcel: Parcel) : Parcelable {
+class StoryMetaData protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     /**
      * Check if Story is closed

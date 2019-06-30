@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.collection.CollectionMeta
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 
 /**
@@ -28,4 +29,4 @@ data class SectionMeta(
     @SerializedName("data")
     @Expose
     val data: SectionMetaData? = null
-) : Parcelable
+) : Parcelable, Serializable

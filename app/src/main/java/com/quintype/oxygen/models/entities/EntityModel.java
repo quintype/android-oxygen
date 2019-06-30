@@ -7,7 +7,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
-public abstract class EntityModel implements Parcelable {
+import java.io.Serializable;
+
+public abstract class EntityModel implements Parcelable, Serializable {
     @SerializedName("updated-at")
     protected long updatedAt;
     @SerializedName("publisher-id")

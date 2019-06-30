@@ -3,12 +3,13 @@ package com.quintype.oxygen.models.author
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class Author : Parcelable {
+class Author : Parcelable, Serializable {
     @SerializedName("id")
     var id: String? = null
     @SerializedName("publisher-id")

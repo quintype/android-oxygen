@@ -5,12 +5,13 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.story.ImageMetaData
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class CoverImage protected constructor(parcel: Parcel) : Parcelable {
+class CoverImage protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("cover-image-url")
     @Expose

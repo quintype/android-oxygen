@@ -4,8 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class MagazineResponse(parcel: Parcel) : Parcelable {
+class MagazineResponse(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("collection")
     var mCollectionResponse: CollectionResponse? = null

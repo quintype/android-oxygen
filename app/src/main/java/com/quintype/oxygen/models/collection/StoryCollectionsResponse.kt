@@ -4,13 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 8/31/18.
  */
 
-class StoryCollectionsResponse() : Parcelable {
+class StoryCollectionsResponse() : Parcelable, Serializable {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeTypedList(this.storyCollections)
     }

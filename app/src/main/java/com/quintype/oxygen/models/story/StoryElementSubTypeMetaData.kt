@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.OxygenConstants.Companion.TYPE_GALLERY
 import com.quintype.oxygen.OxygenConstants.Companion.TYPE_SLIDESHOW
+import java.io.Serializable
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
 
@@ -15,7 +16,7 @@ import java.lang.annotation.RetentionPolicy
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class StoryElementSubTypeMetaData(parcel: Parcel) : Parcelable {
+class StoryElementSubTypeMetaData(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("tweet-url")
     val tweetUrl: String? = parcel.readString()

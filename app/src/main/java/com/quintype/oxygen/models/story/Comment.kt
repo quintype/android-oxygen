@@ -3,12 +3,13 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class Comment protected constructor(parcel: Parcel) : Parcelable {
+class Comment protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("id")
     private val id: Long = parcel.readLong()

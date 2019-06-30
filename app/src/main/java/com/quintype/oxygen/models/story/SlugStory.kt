@@ -3,12 +3,13 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class SlugStory protected constructor(parcel: Parcel) : Parcelable {
+class SlugStory protected constructor(parcel: Parcel) : Parcelable, Serializable {
     override fun describeContents(): Int {
         return 0
     }

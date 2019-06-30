@@ -3,12 +3,13 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class Tag : Parcelable {
+class Tag : Parcelable, Serializable {
 
     @SerializedName("name")
     var name: String? = null

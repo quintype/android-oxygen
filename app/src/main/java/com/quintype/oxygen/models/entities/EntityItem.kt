@@ -5,8 +5,9 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.collection.Metadata
+import java.io.Serializable
 
-class EntityItem() : Parcelable {
+class EntityItem() : Parcelable, Serializable {
     @Expose
     @SerializedName("id")
     var id: Int = 0

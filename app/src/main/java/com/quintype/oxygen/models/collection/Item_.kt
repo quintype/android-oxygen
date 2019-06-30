@@ -4,8 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class Item_() : Parcelable {
+class Item_() : Parcelable, Serializable {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeStringList(this.headline)
     }

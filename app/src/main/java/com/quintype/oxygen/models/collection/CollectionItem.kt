@@ -5,8 +5,9 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.story.Story
+import java.io.Serializable
 
-class CollectionItem() : Parcelable {
+class CollectionItem() : Parcelable, Serializable {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(this.id)
         dest?.writeString(this.type)

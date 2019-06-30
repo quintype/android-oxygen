@@ -5,12 +5,13 @@ import android.os.Parcelable
 import android.text.TextUtils
 import com.google.gson.annotations.SerializedName
 import org.jsoup.Jsoup
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
-class Card protected constructor(parcel: Parcel) : Parcelable {
+class Card protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("id")
     var id: String? = null

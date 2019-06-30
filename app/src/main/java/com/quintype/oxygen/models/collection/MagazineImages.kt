@@ -5,8 +5,9 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.story.ImageMetaData
+import java.io.Serializable
 
-class MagazineImages(parcel: Parcel) : Parcelable {
+class MagazineImages(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("type")
     @Expose

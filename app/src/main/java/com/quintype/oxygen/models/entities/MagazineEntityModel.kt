@@ -3,8 +3,9 @@ package com.quintype.oxygen.models.entities
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class MagazineEntityModel(parcel: Parcel) : Parcelable {
+class MagazineEntityModel(parcel: Parcel) : Parcelable, Serializable {
     @SerializedName("updated-at")
     var updatedAt: Long = 0
 
