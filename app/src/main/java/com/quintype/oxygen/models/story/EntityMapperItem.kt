@@ -3,13 +3,14 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Just a pojo to hold the id/name mapper items for entities
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class EntityMapperItem protected constructor(parcel: Parcel) : Parcelable {
+class EntityMapperItem protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("id")
     var id: String? = null

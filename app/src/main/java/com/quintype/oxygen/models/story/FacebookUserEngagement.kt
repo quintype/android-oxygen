@@ -4,12 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class FacebookUserEngagement() : Parcelable {
+class FacebookUserEngagement() : Parcelable, Serializable {
 
     override fun describeContents(): Int {
         return 0

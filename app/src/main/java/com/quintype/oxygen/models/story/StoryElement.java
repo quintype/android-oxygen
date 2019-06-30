@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +23,7 @@ import static kotlin.text.Charsets.UTF_8;
  * @author Imran imran@quintype.com
  * @author Madhu madhu@quintype.com
  */
-public class StoryElement implements Parcelable {
+public class StoryElement implements Parcelable, Serializable {
     //quote: is virtual and client side only type
     public static final String TYPE_STORY_ELEMENT_VIRTUAL_QUOTE = "virtual-quote";
     //posted-at: is virtual and client side only type, specific to live-blog style story template

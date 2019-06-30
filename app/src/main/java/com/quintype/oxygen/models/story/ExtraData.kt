@@ -3,12 +3,13 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class ExtraData protected constructor(`in`: Parcel) : Parcelable {
+class ExtraData protected constructor(`in`: Parcel) : Parcelable, Serializable {
     @SerializedName("value")
     private val value: String = `in`.readString()
     @SerializedName("label")

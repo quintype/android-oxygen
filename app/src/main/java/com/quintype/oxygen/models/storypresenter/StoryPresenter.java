@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.quintype.oxygen.models.entities.EntityModel;
 import com.quintype.oxygen.models.story.*;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -18,7 +19,7 @@ import java.util.*;
  * Use the presenter to load an adapter or bind views.
  * Embed views.
  */
-public class StoryPresenter implements Parcelable {
+public class StoryPresenter implements Parcelable, Serializable {
 
     public static final String LISTICLE_BULLETIN_321 = "321";
     public static final String LISTICLE_BULLETIN_123 = "123";

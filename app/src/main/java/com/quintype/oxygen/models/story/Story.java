@@ -13,10 +13,11 @@ import com.quintype.oxygen.models.author.ContributorModel;
 import com.quintype.oxygen.models.entities.EntityModel;
 import com.quintype.oxygen.models.sections.Section;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Story implements Parcelable {
+public class Story implements Parcelable, Serializable {
 
     public static final String[] DEFAULT_FIELDS = {
             "id", "hero-image-s3-key", "sections", "headline", "subheadline",

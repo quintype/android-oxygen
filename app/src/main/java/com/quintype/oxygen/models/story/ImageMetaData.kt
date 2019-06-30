@@ -3,6 +3,7 @@ package com.quintype.oxygen.models.story
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -10,7 +11,7 @@ import java.util.*
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
 
-class ImageMetaData protected constructor(parcel: Parcel) : Parcelable {
+class ImageMetaData protected constructor(parcel: Parcel) : Parcelable, Serializable {
 
     @SerializedName("width")
     var width: Int = parcel.readInt()

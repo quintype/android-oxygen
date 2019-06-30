@@ -5,11 +5,12 @@ import android.os.Parcelable
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created TemplateCollectionWithRx by rakshith on 9/4/18.
  */
-class CardMetadata protected constructor(`in`: Parcel) : Parcelable {
+class CardMetadata protected constructor(`in`: Parcel) : Parcelable, Serializable {
 
     @SerializedName("attributes")
     private var attributes: JsonObject? = null
