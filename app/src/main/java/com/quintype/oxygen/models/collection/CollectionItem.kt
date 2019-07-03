@@ -17,6 +17,7 @@ class CollectionItem() : Parcelable {
         dest?.writeParcelable(this.metadata, flags)
         dest?.writeParcelable(this.associatedMetadata, flags)
         dest?.writeParcelable(this.item, flags)
+        dest?.writeString(this.collectionDate)
     }
 
     override fun describeContents(): Int {
@@ -57,6 +58,9 @@ class CollectionItem() : Parcelable {
     @SerializedName("story")
     @Expose
     var story: Story? = null
+    @SerializedName("collection-date")
+    @Expose
+    var collectionDate: String? = null
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readString()
@@ -67,6 +71,7 @@ class CollectionItem() : Parcelable {
         template = parcel.readString()
         metadata = parcel.readParcelable(Metadata::class.java.classLoader)
         story = parcel.readParcelable(Story::class.java.classLoader)
+        collectionDate = parcel.readString()
     }
 
     companion object CREATOR : Parcelable.Creator<CollectionItem> {
