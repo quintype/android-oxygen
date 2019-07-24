@@ -109,4 +109,12 @@ class MagazineService {
         return mEntityReponse
     }
 
+    /**
+     * API for getting external id to bookmark mapping
+     */
+    fun getStoryByExternalId(externalIds: String, mExternalStoryFields: String) {
+        val magazineService: MagazineServices =
+            RetrofitApiClient.getRetrofitApiClient().create(MagazineServices::class.java)
+        magazineService.getStoryByExternalId(externalIds, mExternalStoryFields)
+    }
 }

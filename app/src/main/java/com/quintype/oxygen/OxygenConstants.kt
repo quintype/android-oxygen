@@ -1,8 +1,5 @@
 package com.quintype.oxygen
 
-import android.content.Context
-import android.provider.Settings
-
 /**
  * Created TemplateCollectionWithRx by rakshith on 7/23/18.
  */
@@ -27,7 +24,7 @@ class OxygenConstants {
         const val KEY_TRENDING: String = "trending"
         const val KEY_WIDGET: String = "widget"
         const val STORY_FIELDS: String =
-            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access"
+            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access,url"
         const val MAGAZINE_STORY_FIELDS: String =
             "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,cards,tags,subheadline,access-level-values,access"
         const val SEARCH_STORY_FIELDS =
@@ -53,7 +50,7 @@ class OxygenConstants {
         const val MAGAZINE_ID = "MAGAZINE_ID"
         const val QUERY_PARAM_COLLECTION_DATE_AFTER = "collection-date-after"
         const val QUERY_PARAM_COLLECTION_DATE_BEFORE = "collection-date-before"
-        const val QUERY_PARAM_KEY_CONTENT_TYPE="content-types"
+        const val QUERY_PARAM_KEY_CONTENT_TYPE = "content-types"
 
         /**
          * for storyElementSubTypeMetadata
@@ -112,5 +109,8 @@ fun isInnerCollectionRequired(layoutName: String?): Boolean {
         else -> false
     }
 }
+
 const val QUERY_PARAM_KEY_PLATFORM = "platform"
 const val QUERY_PARAM_KEY_DEVICE_ID = "deviceid"
+
+const val QUERY_PARAM_EXTERNAL_IDS = "external-ids"
