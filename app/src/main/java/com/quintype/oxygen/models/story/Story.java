@@ -890,13 +890,16 @@ public class Story implements Parcelable {
     /**
      * @return story element for hero element
      */
-    public StoryElement getHeroElement() {
-        StoryElement heroElement = new StoryElement();
-        heroElement.imageS3Key = this.heroImageS3Key;
-        heroElement.id = StoryElement.ID_HERO;
-        heroElement.title = this.heroImageCaption;
-        heroElement.type = StoryElement.TYPE_STORY_ELEMENT_IMAGE;
-        return heroElement;
+    private StoryElement getHeroElement() {
+        if (!TextUtils.isEmpty(this.heroImageS3Key)) {
+            StoryElement heroElement = new StoryElement();
+            heroElement.imageS3Key = this.heroImageS3Key;
+            heroElement.id = StoryElement.ID_HERO;
+            heroElement.title = this.heroImageCaption;
+            heroElement.type = StoryElement.TYPE_STORY_ELEMENT_IMAGE;
+            return heroElement;
+        }
+        return null;
     }
 
     /**
@@ -905,7 +908,8 @@ public class Story implements Parcelable {
     public List<StoryElement> getImageElementsWithHeroElement() {
         List<StoryElement> imageElements = new ArrayList<>();
         StoryElement heroCard = getHeroElement();
-        imageElements.add(heroCard);
+        if (heroCard != null)
+            imageElements.add(heroCard);
         if (cards != null) {
             for (Card card : cards) {
                 for (StoryElement elem : card.storyElements()) {
@@ -924,7 +928,8 @@ public class Story implements Parcelable {
     public List<StoryElement> getAllImageElements() {
         List<StoryElement> imageElements = new ArrayList<>();
         StoryElement heroCard = getHeroElement();
-        imageElements.add(heroCard);
+        if (heroCard != null)
+            imageElements.add(heroCard);
         if (cards != null) {
             for (Card card : cards) {
                 for (StoryElement elem : card.storyElements()) {
