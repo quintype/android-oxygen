@@ -114,3 +114,5 @@ const val QUERY_PARAM_KEY_PLATFORM = "platform"
 const val QUERY_PARAM_KEY_DEVICE_ID = "deviceid"
 
 const val QUERY_PARAM_EXTERNAL_IDS = "external-ids"
+
+const val KEY_PARAM_ID = "id"
