@@ -28,4 +28,7 @@ class ConfigModel {
     @SerializedName("polltype-host")
     @Expose
     var polltypeHost: String? = null
+    @SerializedName("sections")
+    @Expose
+    var sections: String? = null
 }
