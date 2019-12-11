@@ -18,5 +18,8 @@ data class MenuItemModel(
     var title: String? = null,
     @SerializedName("slug")
     @Expose
-    var slug: String? = null
+    var slug: String? = null,
+    @SerializedName("image-url")
+    @Expose
+    var imageURL: String? = null
 ) : Parcelable
