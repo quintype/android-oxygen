@@ -1,8 +1,6 @@
 package com.quintype.oxygen.analytics.models
 
 import com.google.gson.annotations.SerializedName
-import com.quintype.oxygen.analytics.models.AnalyticsEvent
-import com.quintype.oxygen.analytics.models.EventType
 
 class StoryViewEvent : AnalyticsEvent() {
     @SerializedName("page-view-event-id")

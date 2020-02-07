@@ -1,25 +1,27 @@
 package com.quintype.oxygen.services
 
-import io.reactivex.disposables.CompositeDisposable
+import com.quintype.oxygen.OxygenConstants
+import com.quintype.oxygen.STORY_FIELDS
+import com.quintype.prothomalo.utils.BREAKING_NEWS_SLUG
 
-class BreakingNewsService {
+class BreakingNewsService private constructor() {
     companion object {
-        var breakingNewsApi: BreakingNewsApi =
-            RetrofitApiClient.getRetrofitApiClient().create(BreakingNewsApi::class.java)
+        private var breakingNewsApi: BreakingNewsApi = RetrofitApiClient.getRetrofitApiClient(OxygenConstants.BASE_URL).create(BreakingNewsApi::class.java)
 
         private var breakingNewsServiceInstance: BreakingNewsService? = null
-        var mCompositeDisposable: CompositeDisposable? = null
+        private var BREAKING_NEWS_STORY_FIELD = STORY_FIELDS
 
         @Synchronized
-        fun getInstance(compositeDisposable: CompositeDisposable): BreakingNewsService {
-            if (breakingNewsServiceInstance == null)
+        fun getInstance(breakingNewsStoryFields: String): BreakingNewsService {
+            if (breakingNewsServiceInstance == null) {
                 breakingNewsServiceInstance = BreakingNewsService()
 
-            mCompositeDisposable = CompositeDisposable()
-
+                if (breakingNewsStoryFields.isNotEmpty()) BREAKING_NEWS_STORY_FIELD = breakingNewsStoryFields
+            }
             return breakingNewsServiceInstance as BreakingNewsService
         }
     }
 
-    fun getBreakingNews() = breakingNewsApi.getBreakingNews()
+    fun getBreakingNews(defaultOffset: Int, breakingNewsLimit: Int) =
+        breakingNewsApi.getBreakingNews(BREAKING_NEWS_SLUG, defaultOffset, breakingNewsLimit, BREAKING_NEWS_STORY_FIELD)
 }

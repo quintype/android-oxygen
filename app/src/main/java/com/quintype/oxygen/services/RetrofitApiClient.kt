@@ -1,8 +1,8 @@
 package com.quintype.oxygen.services
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.TLSSocketFactory
+import com.quintype.prothomalo.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
- * Created TemplateCollectionWithRx by rakshith on 7/23/18.
+ * Created TemplateCollection by rakshith on 7/23/18.
  */
 
 class RetrofitApiClient {
@@ -19,23 +19,29 @@ class RetrofitApiClient {
         /**
          * interceptor and builder is used to print the log
          */
-        private var interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-        //                .setLevel(HttpLoggingInterceptor.Level.BODY)
-//                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
-        var builder: OkHttpClient.Builder = OkHttpClient().newBuilder().addInterceptor(interceptor)
+        private var httpLoggingInterceptor = HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        var builder: OkHttpClient.Builder = OkHttpClient().newBuilder()
             .sslSocketFactory(TLSSocketFactory())
             .hostnameVerifier { hostname, session -> true }
-        .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
 
-        fun getRetrofitApiClient(): Retrofit {
-            if (OxygenConstants.BASE_URL != null)
+        fun getRetrofitApiClient(baseUrl: String?): Retrofit {
+            if (baseUrl != null) {
+                //logs for debug builds
+                if (BuildConfig.DEBUG) {
+                    builder.addInterceptor(httpLoggingInterceptor)
+                }
                 retrofit = Retrofit
                     .Builder()
-                    .baseUrl(OxygenConstants.BASE_URL)
+                    .baseUrl(baseUrl)
                     .client(builder.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
+            }
+
             return retrofit as Retrofit
         }
     }

@@ -1,5 +1,6 @@
 package com.quintype.oxygen.services
 
+import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.models.StoryPayWallPingBackRequest
 import io.reactivex.disposables.CompositeDisposable
 
@@ -7,7 +8,7 @@ class UserAccessService {
     companion object {
         private var mUserAccessService: UserAccessService? = null
         var mCompositeDisposable = CompositeDisposable()
-        var mUserAccessServiceApi = RetrofitApiClient.getRetrofitApiClient().create(UserAccessServiceApi::class.java)!!
+        var mUserAccessServiceApi = RetrofitApiClient.getRetrofitApiClient(OxygenConstants.BASE_URL).create(UserAccessServiceApi::class.java)
 
         @Synchronized
         fun getInstance(): UserAccessService {

@@ -6,29 +6,41 @@ package com.quintype.oxygen
 class OxygenConstants {
     companion object {
         var BASE_URL: String? = null
+        var POLLTYPE_HOST_URL: String? = null
+        private var METYPE_BASE_URL: String? = null
+
+        fun getMetypeBaseURL(isOrigin: Boolean = false): String {
+            if (isOrigin) {
+                return METYPE_BASE_URL!!.substring(0, METYPE_BASE_URL!!.trim().length - 1)
+            }
+            return METYPE_BASE_URL!!
+        }
 
         fun initBaseUrl(mBaseUrl: String) {
             BASE_URL = mBaseUrl
         }
 
+        fun initPolltypeUrl(pollTypeHost: String) {
+            POLLTYPE_HOST_URL = pollTypeHost
+        }
+
+        fun initMetTypeUrl(metypeUrl: String) {
+            METYPE_BASE_URL = metypeUrl
+        }
+
         const val COLLECTION_HOME: String = "home"
-        const val TYPE_COLLECTION: String = "collection"
         const val PAGE_LIMIT_CHILD: Int = 5
         const val STORY_LIMIT: Int = 20
+        const val COMMENTS_LIMIT: Int = 20
         const val TRENDING_STORY_LIMIT: Int = 5
 
-        const val TYPE_STORY: String = "story"
         const val TYPE_BREAKING_NEWS: String = "breaking-news"
         const val WIDGET_TEMPLATE: String = "widget"
         const val KEY_BUNDLE: String = "bundle"
         const val KEY_TRENDING: String = "trending"
         const val KEY_WIDGET: String = "widget"
-        const val STORY_FIELDS: String =
-            "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access,url"
         const val MAGAZINE_STORY_FIELDS: String =
             "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,cards,tags,subheadline,access-level-values,access"
-        const val SEARCH_STORY_FIELDS =
-            "author-name,tags,headline,authors,story-content-id,slug,last-published-at,subheadline,sections,hero-image-metadata,published-at,id,hero-image-s3-key,author-id,first-published-at,hero-image-caption,story-template,created-at,alternative,access-level-values,access"
         const val LIMITED_STORY_FIELDS = "id,headline,slug"
 
         /**
@@ -38,6 +50,8 @@ class OxygenConstants {
         const val CONTENT_TYPE_HTTP_ACCESS_TOKEN = "Access-token"
         const val COLLECTION_SLUG = "collections-slug"
         const val QUERY_PARAM_KEY_LIMIT = "limit"
+        const val QUERY_PARAM_KEY_ID = "id"
+        const val QUERY_PARAM_POLL_ID = "poll-id"
         const val QUERY_PARAM_KEY_OFFSET = "offset"
         const val QUERY_PARAM_KEY_FIELDS = "story-fields"
         const val QUERY_PARAM_KEY_SEARCH_FIELDS = "fields"
@@ -51,6 +65,11 @@ class OxygenConstants {
         const val QUERY_PARAM_COLLECTION_DATE_AFTER = "collection-date-after"
         const val QUERY_PARAM_COLLECTION_DATE_BEFORE = "collection-date-before"
         const val QUERY_PARAM_KEY_CONTENT_TYPE = "content-types"
+        const val QUERY_PARAM_KEY_ACCOUNT_ID = "account_id"
+        const val QUERY_PARAM_KEY_JWT = "jwt"
+        const val QUERY_PARAM_HEADER_ORIGIN = "origin"
+        const val QUERY_PARAM_KEY_PAGE = "page"
+        const val QUERY_PARAM_KEY_PER_PAGE = "per_page"
 
         /**
          * for storyElementSubTypeMetadata
@@ -76,6 +95,12 @@ const val X_VIKATAN_AUTH = "x-vikatan-auth"
 const val COLLECTION_ID = "COLLECTION_ID"
 const val BREAKING_NEWS_SLUG: String = "breaking-news"
 const val COLLECTION_METADATA_TYPE_BUNDLE: String = "bundle"
+
+const val ACCOUNT_ID = "account_id"
+const val PAGE_ID = "page_id"
+const val JWT = "jwt"
+const val PAGE = "page"
+const val ORIGIN = "Origin"
 
 /**
  * Viewholder types
@@ -110,9 +135,21 @@ fun isInnerCollectionRequired(layoutName: String?): Boolean {
     }
 }
 
+const val TYPE_STORY: String = "story"
+const val TYPE_COLLECTION: String = "collection"
+
+const val STORY_FIELDS: String =
+    "id,hero-image-s3-key,sections,headline,authors,created-at,hero-image-caption,story-content-id,alternative,hero-image-metadata,slug,last-published-at,published-at,first-published-at,story-template,subheadline,author-name,access-level-values,access,url,metadata"
+const val SEARCH_STORY_FIELDS =
+    "author-name,tags,headline,authors,story-content-id,slug,last-published-at,subheadline,sections,hero-image-metadata,published-at,id,hero-image-s3-key,author-id,first-published-at,hero-image-caption,story-template,created-at,alternative,access-level-values,access,metadata"
+
+const val AUTHOR_STORY_FIELDS =
+    "id,slug,headline,hero-image-s3-key,hero-image-caption,hero-image-metadata,alternative,last-published-at,subheadline,author-name,url,story-template,authors,metadata"
 const val QUERY_PARAM_KEY_PLATFORM = "platform"
 const val QUERY_PARAM_KEY_DEVICE_ID = "deviceid"
 
 const val QUERY_PARAM_EXTERNAL_IDS = "external-ids"
 
 const val KEY_PARAM_ID = "id"
+const val CALCULATE_HEIGHT = "CALCULATE_HEIGHT"
+const val CALCULATE_WIDTH = "CALCULATE_WIDTH"

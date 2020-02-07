@@ -1,7 +1,6 @@
 package com.quintype.oxygen.analytics.models
 
 import com.google.gson.annotations.SerializedName
-import com.quintype.oxygen.analytics.models.EventType
 
 class StoryElementActionEvent : StoryElementViewEvent() {
 

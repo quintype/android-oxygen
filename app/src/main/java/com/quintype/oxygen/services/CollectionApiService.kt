@@ -2,7 +2,7 @@ package com.quintype.oxygen.services
 
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.models.BulkCollectionRequest
-import com.quintype.oxygen.models.collection.CollectionResponse
+import com.quintype.oxygen.models.latest.home.CollectionResponse
 import io.reactivex.Flowable
 import retrofit2.http.*
 

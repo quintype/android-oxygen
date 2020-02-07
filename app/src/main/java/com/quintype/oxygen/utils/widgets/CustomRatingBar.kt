@@ -3,14 +3,14 @@ package com.quintype.oxygen.utils.widgets
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
-import android.support.annotation.NonNull
-import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.quintype.oxygen.R
+import androidx.annotation.NonNull
+import androidx.core.view.ViewCompat
+import com.quintype.prothomalo.R
 
 class CustomRatingBar : LinearLayout {
 

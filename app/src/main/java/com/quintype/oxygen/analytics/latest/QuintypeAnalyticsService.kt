@@ -195,7 +195,7 @@ class QuintypeAnalyticsService(mContext: Context, mobileConfig: ConfigModel) {
     fun notifyStoryVisitPageView(story: Story) {
         val pageViewEvent = PageViewEvent()
         pageViewEvent.mPageType = PageViewEvent.PAGE_TYPE_STORY
-        pageViewEvent.mUrl = story.slug()
+        pageViewEvent.mUrl = story.slug
         pageViewEvent.mId = UUID.randomUUID().toString()
         mStoryVisitPageViewEventId = pageViewEvent.mId
         postAnalyticsEvent(pageViewEvent)
@@ -210,7 +210,7 @@ class QuintypeAnalyticsService(mContext: Context, mobileConfig: ConfigModel) {
         logdExt("Notify story visit  $story.headline()")
         val storyViewEvent = StoryViewEvent()
         storyViewEvent.mPageViewEventId = mStoryVisitPageViewEventId
-        storyViewEvent.mStoryContentId = story.contentId()
+        storyViewEvent.mStoryContentId = story.storyContentId
         postAnalyticsEvent(storyViewEvent)
     }
 
@@ -223,12 +223,12 @@ class QuintypeAnalyticsService(mContext: Context, mobileConfig: ConfigModel) {
      */
     fun notifyStoryElementVisible(story: Story, card: Card, storyElement: StoryElement) {
         val event = StoryElementViewEvent()
-        event.mStoryContentId = story.contentId()
-        event.mStoryVersionId = story.storyVersionId()
+        event.mStoryContentId = story.storyContentId
+        event.mStoryVersionId = story.storyVersionId
         event.mCardContentId = card.contentId
         event.mCardVersionId = card.contentVersionId
         event.mStoryElementId = storyElement.id()
-        event.mType = storyElement.type()
+        event.mType = storyElement.type()!!
         event.mPageViewEventId = mStoryVisitPageViewEventId
         postAnalyticsEvent(event)
     }
@@ -247,12 +247,12 @@ class QuintypeAnalyticsService(mContext: Context, mobileConfig: ConfigModel) {
         timeStampInMillis: Long, action: StoryElementActionEvent.ACTION
     ) {
         val event = StoryElementActionEvent()
-        event.mStoryContentId = story.contentId()
-        event.mStoryVersionId = story.storyVersionId()
+        event.mStoryContentId = story.storyContentId
+        event.mStoryVersionId = story.storyVersionId
         event.mCardContentId = card.contentId
         event.mCardVersionId = card.contentVersionId
         event.mStoryElementId = storyElement.id()
-        event.mType = storyElement.type()
+        event.mType = storyElement.type()!!
         event.mPageViewEventId = mStoryVisitPageViewEventId
         event.mActionTimeInMillis = timeStampInMillis
         event.mStoryElementAction = action.toString()
@@ -268,10 +268,10 @@ class QuintypeAnalyticsService(mContext: Context, mobileConfig: ConfigModel) {
     fun notifyContentShare(story: Story, provider: String) {
         val event = ContentShareEvent()
         event.mSocialMediaType = provider
-        event.mStoryContentId = story.contentId()
+        event.mStoryContentId = story.storyContentId
         event.mContentType = "story"
         event.mPageViewEventId = mStoryVisitPageViewEventId
-        event.mUrl = story.slug()
+        event.mUrl = story.slug
         postAnalyticsEvent(event)
     }
 

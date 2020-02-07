@@ -1,73 +1,33 @@
 package com.quintype.oxygen.services
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import com.quintype.oxygen.ErrorHandler
+
+import com.quintype.oxygen.AUTHOR_STORY_FIELDS
 import com.quintype.oxygen.OxygenConstants
-import com.quintype.oxygen.models.collection.CollectionResponse
-import com.quintype.oxygen.models.story.Story
-import com.quintype.oxygen.utils.widgets.logdExt
-import com.quintype.oxygen.utils.widgets.logeExt
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subscribers.ResourceSubscriber
+import com.quintype.oxygen.TYPE_STORY
 
-class AuthorProfileService {
-    private var mAuthorProfileApiService: AuthorProfileApiService =
-        RetrofitApiClient.getRetrofitApiClient().create(AuthorProfileApiService::class.java)
-    private var mObserver: Disposable? = null
-    var mCollectionData: MutableLiveData<List<Story>> = MutableLiveData()
+class AuthorProfileService private constructor() {
+    companion object {
+        private var mAuthorProfileApiService: AuthorProfileApiService? = null
 
-    /**
-     * Method to get only stories written by the author
-     */
-    fun getAuthorProfileStoriesResponse(
-        mAuthorId: String,
-        pageNumber: Int,
-        iPageLimit: Int,
-        errorHandler: ErrorHandler?
-    ): LiveData<List<Story>> {
-        mObserver?.dispose()
-        logdExt("First Iteration Collection Slug - " + mAuthorId + "  Limit - " + iPageLimit + " Offset - " + pageNumber * iPageLimit)
+        private var mAuthorProfileService: AuthorProfileService? = null
 
-        //story list
-        val storyList = ArrayList<Story>()
+        private var AUTHOR_STORY_FIELD: String = AUTHOR_STORY_FIELDS
 
-        mObserver = mAuthorProfileApiService.getStoriesByAuthorApiService(
-            mAuthorId,
-            iPageLimit,
-            pageNumber,
-            OxygenConstants.TYPE_STORY,
-            OxygenConstants.STORY_FIELDS
-        )
-            .map { mAuthorProfileResponse ->
-                mAuthorProfileResponse.items?.forEach { mCollectionItem ->
-                    if (mCollectionItem.story != null)
-                        storyList.add(mCollectionItem.story as Story)
+        @Synchronized
+        fun getInstance(mAuthorStoryFields: String = ""): AuthorProfileService {
+            if (null == mAuthorProfileService) {
+                mAuthorProfileService = AuthorProfileService()
+                mAuthorProfileApiService = RetrofitApiClient.getRetrofitApiClient(OxygenConstants.BASE_URL).create(AuthorProfileApiService::class.java)
+                if (mAuthorStoryFields.isNotEmpty()) {
+                    AUTHOR_STORY_FIELD = mAuthorStoryFields
                 }
-
-                return@map mAuthorProfileResponse
             }
-            .subscribeOn(Schedulers.io())
-            .retry(3)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : ResourceSubscriber<CollectionResponse>() {
-                override fun onComplete() {
-                    logdExt("CollectionModelList Size onComplete - " + storyList.size)
-                    mCollectionData.value = storyList
-                    errorHandler?.onAPISuccess()
-                }
 
-                override fun onNext(mCollectionsModel: CollectionResponse) {
-                    logdExt("CollectionModelList collectionResponse - $mCollectionsModel")
-                }
-
-                override fun onError(e: Throwable) {
-                    errorHandler?.onAPIFailure()
-                    logeExt("First iteration API failed for collection SLUG " + mAuthorId + ", getting " + e.message)
-                }
-            })
-        return mCollectionData
+            return mAuthorProfileService!!
+        }
     }
+
+    fun getAuthorProfileStories(mAuthorId: String, pageNumber: Int, iPageLimit: Int) =
+        mAuthorProfileApiService?.getStoriesByAuthorApiService(mAuthorId, iPageLimit, pageNumber, TYPE_STORY, AUTHOR_STORY_FIELD)
+
 }
