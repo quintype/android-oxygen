@@ -1,13 +1,13 @@
 package com.quintype.oxygen.services.latest
 
+import com.quintype.oxygen.OxygenApplication
 import com.quintype.oxygen.services.RetrofitCacheApiClient
-import com.quintype.prothomalo.MainApplication
 import com.quintype.prothomalo.latest.ICollectionApiService
 
 class CollectionService private constructor() {
     companion object {
         private val mCollectionService: ICollectionApiService =
-            RetrofitCacheApiClient(MainApplication.mInstance).getRetrofitApiClient().create(ICollectionApiService::class.java)
+            RetrofitCacheApiClient(OxygenApplication.mInstance!!).getRetrofitApiClient().create(ICollectionApiService::class.java)
 
         private var mCollectionServiceInstance: CollectionService? = null
 
