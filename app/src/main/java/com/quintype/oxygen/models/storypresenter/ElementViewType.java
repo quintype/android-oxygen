@@ -42,12 +42,14 @@ public @interface ElementViewType {
     int STORY_FEEDBACK = 54;
     int ATTACHMENT = 55;
     int REFERENCE = 56;
-    int ME_TYPE_REACTION = 60;
-    int ME_TYPE_CLAP = 61;
 
     int ICON_WITH_TITLE = 57;
     int SOCIAL_SHARE_WIDGET = 58;
     int CONTRIBUTORS_WIDGET = 59;
+    int ME_TYPE_REACTION = 60;
+    int ME_TYPE_CLAP = 61;
+    int ADS = 62;
+    int CARD_SHARE_WIDGET = 63;
 
     class Process {
         public Process() {
