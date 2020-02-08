@@ -1,4 +1,4 @@
-package com.quintype.oxygen.analytics
+package com.quintype.oxygen.services.analytics
 
 import android.app.Application
 import android.content.Context

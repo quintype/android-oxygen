@@ -10,7 +10,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
 import com.quintype.oxygen.models.author.Author;
 import com.quintype.oxygen.models.author.ContributorModel;
-import com.quintype.oxygen.models.entities.EntityModel;
 import com.quintype.oxygen.models.sections.Section;
 
 import java.util.*;

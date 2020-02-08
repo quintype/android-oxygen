@@ -1,7 +1,7 @@
 package com.quintype.oxygen.models.bookmark
 
 import com.google.gson.annotations.SerializedName
-import com.quintype.prothomalo.database.entities.BulkBookmarkMetadata
+import com.quintype.oxygen.database.entities.BulkBookmarkMetadata
 
 data class AttributesItem(
     @SerializedName("page_id")

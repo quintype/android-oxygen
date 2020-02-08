@@ -12,7 +12,6 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 import java.util.*
 
-
 @Parcelize
 data class Story(
     @SerializedName("updated-at")
@@ -449,4 +448,3 @@ data class Story(
         }
     }
 }
-

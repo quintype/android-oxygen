@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 2
-def versionBuild = 3 // bump for dogfood builds, public betas, etc.
+def versionBuild = 4 // bump for dogfood builds, public betas, etc.
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -59,4 +59,6 @@ dependencies {
 
     //for Expandable RecyclerView(NavMenu)
     implementation 'com.bignerdranch.android:expandablerecyclerview:2.1.1'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 }

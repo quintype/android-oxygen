@@ -1,8 +1,8 @@
 package com.quintype.oxygen.services
 
+import com.quintype.oxygen.BREAKING_NEWS_SLUG
 import com.quintype.oxygen.OxygenConstants
 import com.quintype.oxygen.STORY_FIELDS
-import com.quintype.prothomalo.utils.BREAKING_NEWS_SLUG
 
 class BreakingNewsService private constructor() {
     companion object {

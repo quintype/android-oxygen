@@ -1,10 +1,11 @@
 package com.quintype.oxygen.models.polltype
 
 import android.os.Parcelable
+import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.quintype.qtauth.models.Member
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 class VoteRequest(
@@ -26,7 +27,7 @@ data class Vote(
 @Parcelize
 data class PollAttribute(
     @SerializedName("profile")
-    var profile: Member? = null
+    var profile: @RawValue JsonObject? = null
 ) : Parcelable
 
 @Parcelize

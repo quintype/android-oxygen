@@ -1,8 +1,8 @@
 package com.quintype.oxygen.services
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.quintype.oxygen.BuildConfig
 import com.quintype.oxygen.TLSSocketFactory
-import com.quintype.prothomalo.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

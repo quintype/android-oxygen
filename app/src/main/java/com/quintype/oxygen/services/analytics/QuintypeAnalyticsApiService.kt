@@ -1,4 +1,4 @@
-package com.quintype.oxygen.analytics
+package com.quintype.oxygen.services.analytics
 
 import com.quintype.oxygen.analytics.models.PostableEvent
 import io.reactivex.Flowable

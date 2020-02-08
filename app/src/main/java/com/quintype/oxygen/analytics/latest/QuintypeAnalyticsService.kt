@@ -6,7 +6,7 @@ import android.text.TextUtils
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.quintype.oxygen.TLSSocketFactory
-import com.quintype.oxygen.analytics.QuintypeAnalyticsApiService
+import com.quintype.oxygen.services.analytics.QuintypeAnalyticsApiService
 import com.quintype.oxygen.analytics.models.*
 import com.quintype.oxygen.models.latest.config.ConfigModel
 import com.quintype.oxygen.models.sections.Section
