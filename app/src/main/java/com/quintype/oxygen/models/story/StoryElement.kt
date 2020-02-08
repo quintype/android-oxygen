@@ -1,9 +1,9 @@
 package com.quintype.oxygen.models.story
 
 import android.os.Parcelable
+import android.support.annotation.StringDef
 import android.text.TextUtils
 import android.util.Base64
-import androidx.annotation.StringDef
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.lang.annotation.Retention

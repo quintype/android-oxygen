@@ -3,11 +3,11 @@ package com.quintype.oxygen.utils.widgets
 
 import android.content.Context
 import android.graphics.*
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.AppCompatRadioButton
 import android.text.TextPaint
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatRadioButton
-import androidx.core.content.ContextCompat
-import com.quintype.prothomalo.R
+import com.quintype.oxygen.R
 import java.util.*
 
 /**

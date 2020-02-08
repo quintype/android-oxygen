@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //for bookmark filtering palo apps.
+    <item name="eng_base_url" type="string">https://prothomaloeng-web.qtstage.io/</item>//english
+    <item name="na_base_url" type="string">https://prothomalobangla-web.qtstage.io/</item>//northamerica
+
+    <item name="poll_background" type="color">#f6f9fb</item>
+    <item name="poll_progress" type="color">#99C1DD</item>
+    <item name="poll_concrete" type="color">#D0D0D0</item>
+    <item name="poll_text" type="color">#494949</item>
+    <item name="poll_accent" type="color">#A7A9AC</item>
+    <item name="poll_progress_color" type="color">#eaf2f9</item>
+    <item name="poll_opinion_background" type="color">#f9f9f9</item>
+    <item name="poll_description_text_color" type="color">#7b8288</item>
+    <item name="thank_you_text_color" type="color">#4c4c4c</item>
+    <item name="thank_you_percentage_text_color" type="color">#59c2ee</item>
+    <item name="blue_default" type="color">#FF5BAAF4</item>
+    <item name="poll_text_color" type="color">#494949</item>
+    <item name="ocean_boat_blue" type="color">#0778BC</item>
+    <item name="com_facebook_button_background_color" type="color">#415dae</item>
+    <item name="com_facebook_button_background_color_disabled" type="color">#bdc1c9</item>
+    <item name="com_facebook_button_background_color_pressed" type="color">#2f477a</item>
+</resources>

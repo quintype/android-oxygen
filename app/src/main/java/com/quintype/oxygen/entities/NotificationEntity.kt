@@ -1,9 +1,9 @@
 package com.quintype.oxygen.database.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.quintype.prothomalo.utils.TABLE_NOTIFICATION
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import com.quintype.oxygen.TABLE_NOTIFICATION
 
 @Entity(tableName = TABLE_NOTIFICATION)
 class NotificationEntity() {
