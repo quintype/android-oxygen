@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.quintype.oxygen.models.entities.EntitiesMetaData
 import com.quintype.oxygen.models.sections.Section
+import com.quintype.oxygen.models.story.CardShare
 import com.quintype.oxygen.models.story.Tag
 import kotlinx.android.parcel.Parcelize
 import java.util.*
@@ -48,5 +49,9 @@ data class Metadata(
     var issueId: String? = null,
     @SerializedName("pdf-src-key")
     @Expose
-    var pdfSrcKey: PdfSourceKey
+    var pdfSrcKey: PdfSourceKey,
+    @SerializedName("excerpt")
+    var excerpt: String? = null,
+    @SerializedName("card-share")
+    var cardShare: CardShare? = null
 ) : Parcelable
